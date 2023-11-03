@@ -18,13 +18,13 @@ public class Application {
         int result50 = 0; //거스름돈 50
         int result10 = 0; //거스름돈 10
 
-        System.out.println("입력 = ");
+        System.out.print("입력 = ");
         money1 = sc.nextInt();
-        System.out.println("지불해야될 금액 :" + money1 + "원");
+        System.out.println("지불해야될 금액은 : " + money1 + "원 입니다.");
 
-        System.out.println("입력 = ");
+        System.out.print("입력 = ");
         money2 = sc.nextInt();
-        System.out.println("자신이 지불한 금액 :" + money2 + "원");
+        System.out.println("자신이 지불한 금액은 : " + money2 + "원 입니다.");
         System.out.println();
 
         int result;
@@ -37,13 +37,14 @@ public class Application {
         result50 = (result % 100) / 50;
         result10 = (result % 50) / 10;
 
-        System.out.println("거스름돈");
-        System.out.println("5000원 : " + result5000 + "장");
-        System.out.println("1000원 : " + result1000 + "장");
-        System.out.println("500원 : " + result500 + "장");
-        System.out.println("100원 : " + result100 + "장");
-        System.out.println("50원 : " + result50 + "장");
-        System.out.println("10원 : " + result10 + "장");
+        System.out.println("거스름돈은 " + result + "원 입니다.");
+        System.out.println();
+        System.out.println("5000원 : " + result5000 + "장 입니다.");
+        System.out.println("1000원 : " + result1000 + "장 입니다.");
+        System.out.println("500원 : " + result500 + "개 입니다.");
+        System.out.println("100원 : " + result100 + "개 입니다.");
+        System.out.println("50원 : " + result50 + "개 입니다.");
+        System.out.println("10원 : " + result10 + "개 입니다.");
 
     }
 }
