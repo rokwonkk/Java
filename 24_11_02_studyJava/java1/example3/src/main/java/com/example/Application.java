@@ -67,10 +67,11 @@ public class Application {
 
         System.out.print("z 값 입력 = ");
         z = sc.nextInt();
+        System.out.println();
 
         int xyzoper = (x - y) / (z - y);
+        System.out.println("( "+x + " - " + y + " )" + " / " + "( "+z + " - " + y + " )");
         System.out.println("xyzoper : " + xyzoper);
-
         System.out.println();
     }
 }
