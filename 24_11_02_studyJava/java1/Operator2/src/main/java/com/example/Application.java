@@ -55,6 +55,24 @@ public class Application {
         System.out.println( number <= -5 || number >= 0 );
 
         System.out.println( !(number > 5) );
+        System.out.println( number <= 5 );
+        System.out.println();
 
+        /**
+         *  삼항연산자
+         *  조건에 따라서 값을 대입
+         *  값 = (조건) ? "값1" : "값2"
+         */
+        char c;
+        c = (number > 0) ? 'Y' : 'N';
+        System.out.println("c : " + c);
+
+        int n;
+        n = (number % 2 == 0) ? 2 : 1;
+        System.out.println("n : " + n);
+
+        String answer;
+        answer = (number >= 3) ? "3보다 크거나 같다" : "3보다 작다";
+        System.out.println("answer : " + answer);
     }
 }
