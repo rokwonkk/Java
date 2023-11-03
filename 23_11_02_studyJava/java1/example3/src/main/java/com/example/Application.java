@@ -7,6 +7,7 @@ public class Application {
 
         System.out.println("과제 1");
         System.out.println();
+        System.out.println();
 
         Scanner sc = new Scanner(System.in);
 
