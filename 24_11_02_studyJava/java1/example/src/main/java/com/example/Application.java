@@ -29,16 +29,10 @@ public class Application {
         System.out.println();
         System.out.println(" -------------------------------------------------------------------- ");
 
-
-        String name = "name";
-        String name1 = "홍길동";
-        String name2 = "일지매";
-        String name3 = "장옥정";
+        String[] nameList = {"name","홍길동","일지매","장옥정"};
 
         String age = "age";
-        int age1 = 20;
-        int age2 = 18;
-        int age3 = 14;
+        int[] intList = {20,18,14};
 
         String man = "man";
         boolean man1 = true;
@@ -64,11 +58,11 @@ public class Application {
         System.out.println("과제 3");
         System.out.println();
         System.out.println("=============================================================================================");
-        System.out.println("\\\t"+name+"\t\t\t"+age+"\t\t\t"+man+"\t\t\t"+phone+"\t\t\t\t"+height+"\t\t\t"+address+"\t\t\\");
+        System.out.println("\\\t"+nameList[0]+"\t\t\t"+age+"\t\t\t"+man+"\t\t\t"+phone+"\t\t\t\t"+height+"\t\t\t"+address+"\t\t\\");
         System.out.println("=============================================================================================");
-        System.out.println("\\\t\""+name1+"\"\t\t"+age1+"\t\t\t"+man1+"\t\t"+call1+"\t\t"+height1+"\t\t\t\""+address1+"\"\t\\");
-        System.out.println("\\\t\""+name2+"\"\t\t"+age2+"\t\t\t"+man2+"\t\t"+call2+"\t\t\t"+height2+"\t\t\t\""+address2+"\"\t\t\\");
-        System.out.println("\\\t\""+name3+"\"\t\t"+age3+"\t\t\t"+woman+"\t\t"+call3+"\t\t\t"+height3+"\t\t\t\""+address3+"\"\t\t\\");
+        System.out.println("\\\t\""+nameList[1]+"\"\t\t"+intList[0]+"\t\t\t"+man1+"\t\t"+call1+"\t\t"+height1+"\t\t\t\""+address1+"\"\t\\");
+        System.out.println("\\\t\""+nameList[2]+"\"\t\t"+intList[1]+"\t\t\t"+man2+"\t\t"+call2+"\t\t\t"+height2+"\t\t\t\""+address2+"\"\t\t\\");
+        System.out.println("\\\t\""+nameList[3]+"\"\t\t"+intList[2]+"\t\t\t"+woman+"\t\t"+call3+"\t\t\t"+height3+"\t\t\t\""+address3+"\"\t\t\\");
         System.out.println("=============================================================================================");
         System.out.println();
         System.out.println(" ----------------------------------------------------------------------------------- ");
@@ -80,9 +74,14 @@ public class Application {
         int y = 2;
         int temp;
 
+        System.out.println("x = " + x);
+        System.out.println("y = " + y);
+        System.out.println();
+
         temp = x;
         x = y;
         y = temp;
+
         System.out.println("x = " + x + " y = " + y);
 
         System.out.println();
