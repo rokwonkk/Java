@@ -22,10 +22,12 @@ public class Application {
          *  false true -> false
          *  true true -> true
          */
+
         int number = 0;
         System.out.println("AND");
         System.out.println(number >= 0 && number < 10);
         System.out.println(number > 0 && number < 10);
+        System.out.println();
 
         /**
          *  OR
@@ -34,17 +36,16 @@ public class Application {
          *  false true -> true
          *  true true -> true
          */
-        System.out.println();
         System.out.println("OR");
         System.out.println(number >= 0 || number < 10);
         System.out.println(number < 0 || number > 10);
+        System.out.println();
 
         /**
          *  NOT
          *  false -> true
          *  true -> false
          */
-        System.out.println();
         System.out.println("NOT");
         System.out.println(number == 0);
         System.out.println(number != 0);
@@ -63,6 +64,7 @@ public class Application {
          *  조건에 따라서 값을 대입
          *  값 = (조건) ? "값1" : "값2"
          */
+
         char c;
         c = (number > 0) ? 'Y' : 'N';
         System.out.println("c : " + c);
@@ -74,5 +76,6 @@ public class Application {
         String answer;
         answer = (number >= 3) ? "3보다 크거나 같다" : "3보다 작다";
         System.out.println("answer : " + answer);
+
     }
 }
