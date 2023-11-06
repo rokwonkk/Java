@@ -40,9 +40,11 @@ public class Application {
 
         int num11 = 0, num22 = 1, num33 = 2, num44 = 3, num55 = 4;
 
+        //배열의 초기화
         int numArr[] = {0, 1, 2, 3, 4};
         System.out.println(numArr[3]);
 
+        //배열의 길이
         System.out.println("numArr : " + numArr.length);
 
         //배열 복제, 배열 별명(alias)
