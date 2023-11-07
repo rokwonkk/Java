@@ -1,2 +1,2 @@
-# study
+# Study
 One Day Commit
