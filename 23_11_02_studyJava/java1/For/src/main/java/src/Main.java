@@ -67,5 +67,21 @@ public class Main {
                 System.out.println("\tj = " + j);
             }
         }
+
+        /**
+         *  for + if + array
+         */
+        //for
+        int array[] = {11,22,33,44,55};
+        for (int i = 0; i < array.length; i++){
+            if (array[i] % 2 == 1) {
+                System.out.println(array[i]);
+            }
+        }
+
+        //each
+        for (int i : array) {
+            System.out.println("array : " + i);
+        }
     }
 }
