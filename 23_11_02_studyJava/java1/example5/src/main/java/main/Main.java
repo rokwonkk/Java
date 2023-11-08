@@ -10,10 +10,11 @@ public class Main {
 
         int sum = 0;
         for(int i=1; i <= 1000; i++){
-            System.out.println("i = " + i);
+            //System.out.println("i = " + i);
             sum = sum + i;
-            System.out.println("sum = " +sum);
+            //System.out.println("sum = " +sum);
         }
+        System.out.println("sum = " +sum);
 
         System.out.println();
         System.out.println("과제 13");
@@ -39,7 +40,7 @@ public class Main {
         int value = sc.nextInt();
 
 
-        // 1. 간소화
+        // 1.
         int n = 0;
         for (int i = 0; i < 10; i++){
             n = 10 * i;
@@ -49,7 +50,7 @@ public class Main {
 
         }
 
-        // 2. 하드코딩
+        // 2.
 //        if (value > 0 && value <= 10 ){
 //            System.out.println("입력한 수는 0보다 크거나 같고 10 보다 작거나 같다");
 //        } else if (value > 10 && value <= 20){
@@ -133,7 +134,7 @@ public class Main {
 //            System.out.println();
 //        }
 
-        //방법 2 - 길이 변수 추가
+        //방법 2 - 변수 추가
 
         int len = 0;
         for (int i = 0; i < 9; i++){
