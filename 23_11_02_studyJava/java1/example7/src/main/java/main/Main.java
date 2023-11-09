@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        example22();
+        //example22();
         //example22_1();
         //example23();
         //example23_1();
@@ -15,7 +15,7 @@ public class Main {
         //example25_1();
         //example26();
         //example26_1();
-
+        example26_2();
     }
 
     static void example22() {
@@ -119,13 +119,6 @@ public class Main {
             System.out.println();
         }
     }
-
-    /*
-    5명의 학생의 국어, 영어, 수학를 입력 받고
-    평균 점수가
-    80점 이상이면 합격
-    60점 이하면 불합격이라고 출력하는 프로그램을 작성하라
-    */
     static void example23_1() {
 
         Scanner sc = new Scanner(System.in);
@@ -404,6 +397,48 @@ public class Main {
 
         for (int i = 0; i < array1.length; i++) {
             System.out.print(array1[i] + " ");
+        }
+    }
+
+    static void example26_2() {
+        //섞어서 짜봤다.
+
+        int row, col;
+        int[][] arr2 = new int[3][4];
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("생성할 배열의 행을 입력 : ");
+        row = sc.nextInt();
+        System.out.print("생성할 배열의 열을 입력 : ");
+        col = sc.nextInt();
+
+        int arr1[] = new int [arr2.length * arr2[0].length];
+
+        int count = 0;
+        for(int i = 0; i < row; ++i) {
+            for(int j = 0; j < col; ++j) {
+                System.out.print(i + "행 "+ j +"열 "+"값 입력 >> ");
+                arr2[i][j] = sc.nextInt();
+
+                arr1[count] = arr2[i][j];
+                count++;
+            }
+        }
+
+        System.out.println();
+        System.out.println("2차원 배열 : ");
+        for(int i=0; i < row; ++i) {
+            for(int j=0; j < col; ++j) {
+                System.out.print(arr2[i][j] + "\t");
+            }
+            System.out.println(); //줄바꿈
+        }
+
+        System.out.println();
+        System.out.print("1차원 배열 : ");
+        for (int i = 0; i < arr1.length; i++) {
+            System.out.print(arr1[i] + " ");
         }
     }
 }
