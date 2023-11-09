@@ -44,6 +44,7 @@ public class Main {
                 minvalue = arr[i];
             }
         }
+
         System.out.println("최대값 : " + maxvalue + "\t최소값 : " + minvalue);
         System.out.println();
     }
