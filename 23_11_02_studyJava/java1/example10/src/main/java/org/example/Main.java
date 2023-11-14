@@ -18,11 +18,11 @@ public class Main {
          * 두수를 나눗셈 연산으로 몫과 나머지를 구하는 메소드를 작성
          */
 
-        int num1 = 10000;
-        int num2 = 500;
-        int result = 0, tag[] = new int[1];
+        int num1;
+        int num2;
+        int result, tag[] = new int[1];
 
-        result = getResult(num1, num2, result, tag);
+        result = getResult(100, 20, tag);
         System.out.println("몫 = " + result + " 나머지 = " + tag[0]);
 
         /**
@@ -72,11 +72,11 @@ public class Main {
         }
     }
 
-    static int getResult(int num1, int num2, int result, int[] tag) {
-        result = num1 / num2;
+    static int getResult(int num1, int num2, int[] tag) {
+        int r = num1 / num2;
         tag[0] = num1 % num2;
 
-        return result;
+        return r;
     }
 
     static double getDistance(int x, int y, int x1, int y1) {
