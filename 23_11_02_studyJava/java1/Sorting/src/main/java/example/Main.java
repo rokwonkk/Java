@@ -82,7 +82,6 @@ public class Main {
         /*  Sorting */
 
         //선언부
-
         Scanner sc = new Scanner(System.in);
         int sortNumber[] = null;
         int sort = 0;
