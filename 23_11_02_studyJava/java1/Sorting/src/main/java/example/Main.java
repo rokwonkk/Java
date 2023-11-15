@@ -16,10 +16,10 @@ public class Main {
 
         //sorTing();
         //sorTing2();
-        sorTing3();
+        //sorTing3();
 
         /* 비교 */
-        //sorTing4();
+        sorTingUpgrade();
 
         //스왑
         //swap();
@@ -83,7 +83,6 @@ public class Main {
     private static void sorTing3() {
 
         /*  Sorting */
-
         //선언부
         Scanner sc = new Scanner(System.in);
         int sortNumber[] = null;
@@ -129,29 +128,11 @@ public class Main {
         switch (sort){
             case 1:
                 System.out.println("오름차순 정렬입니다.");
-                for (int i = 0; i < sortNumber.length - 1; i++){
-                    for (int j= i+1; j < sortNumber.length; j++){
-                        if (sortNumber[i] > sortNumber[j]){
-                            //오름차순 1, 2, 3, 4, 5 작은 숫자가 앞으로
-                            temp = sortNumber[i];
-                            sortNumber[i] = sortNumber[j];
-                            sortNumber[j] = temp;
-                        }
-                    }
-                }
+                sortingAsc(sortNumber);
                 break;
             case 2:
                 System.out.println("내림차순 정렬입니다.");
-                for (int i = 0; i < sortNumber.length - 1; i++){
-                    for (int j= i+1; j < sortNumber.length; j++){
-                        if (sortNumber[i] < sortNumber[j]){
-                            //내림차순 5, 4, 3, 2, 1 큰숫자가 앞으로
-                            temp = sortNumber[i];
-                            sortNumber[i] = sortNumber[j];
-                            sortNumber[j] = temp;
-                        }
-                    }
-                }
+                sortingDesc(sortNumber);
                 break;
         }
 
@@ -161,71 +142,38 @@ public class Main {
         }
     }
 
-    /* 소스 비교 */
-    static void sorTing4(){
-        // Sorting
-        Scanner sc = new Scanner(System.in);
-
-        // 선언부
-        int number[] = null;
-        boolean updown = true;
-
-        // 입력
-        // 	몇개를 정렬?
-        System.out.print("정렬할 수의 갯수 = ");
-        int count = sc.nextInt();
-
-        number = new int[count];
-        // 	숫자들을 입력
-        for(int i = 0;i < number.length; i++) {
-            System.out.print((i + 1) + "번째 = ");
-            number[i] = sc.nextInt();
-        }
-
-        //	오름/내림
-        System.out.print("오름(1)/내림(2) = ");
-        int ud = sc.nextInt();
-        if(ud == 1)		updown = true;
-        else			updown = false;
-
-
-
-        // 정렬처리
-        //	오름/내림
-        int temp = 0;
-        for(int i = 0;i < number.length - 1; i++) {
-            for(int j = i + 1;j < number.length; j++ ) {
-                if(updown) {	// 오름
-                    if(number[i] > number[j]) {
-                        temp = number[i];
-                        number[i] = number[j];
-                        number[j] = temp;
-                    }
-                }else {			// 내림
-                    if(number[i] < number[j]) {
-                        temp = number[i];
-                        number[i] = number[j];
-                        number[j] = temp;
-                    }
+    static void sortingAsc(int[] sortNumber) {
+        int temp;
+        for (int i = 0; i < sortNumber.length - 1; i++){
+            for (int j = i+1; j < sortNumber.length; j++){
+                if (sortNumber[i] > sortNumber[j]){
+                    //오름차순 1, 2, 3, 4, 5 작은 숫자가 앞으로
+                    temp = sortNumber[i];
+                    sortNumber[i] = sortNumber[j];
+                    sortNumber[j] = temp;
                 }
             }
         }
+    }
 
-        // 결과출력
-        String message = "";
-        if(updown)	message = "오름차순 정렬입니다";
-        else		message = "내림차순 정렬입니다";
-        System.out.println(message);
-
-        for(int i = 0;i < number.length; i++) {
-            System.out.print(number[i] + " ");
+    static void sortingDesc(int[] sortNumber) {
+        int temp;
+        for (int i = 0; i < sortNumber.length - 1; i++){
+            for (int j = i+1; j < sortNumber.length; j++){
+                if (sortNumber[i] < sortNumber[j]){
+                    //내림차순 5, 4, 3, 2, 1 큰숫자가 앞으로
+                    temp = sortNumber[i];
+                    sortNumber[i] = sortNumber[j];
+                    sortNumber[j] = temp;
+                }
+            }
         }
     }
 
     /**
      *  정렬은 아니지만 배열의 값을 전부 바꾸게 될 때 사용
      */
-    private static void swap() {
+    static void swap() {
 
         int myArray[] = {1, 2, 3, 4, 5};
         int youArray[] = {3, 6, 9, 12, 15};
@@ -242,5 +190,86 @@ public class Main {
 
         System.out.println(Arrays.toString(mArr));
         System.out.println(Arrays.toString(yArr));
+    }
+
+    /* 소스 비교 */
+    /* 함수 사용으로 업그레이드 */
+
+    static void sorTingUpgrade(){
+        // Sorting
+        // 선언부
+        int number[] = null;
+        boolean updown[] = new boolean[1];
+
+        // 입력처리
+        number = input(updown);
+
+        // 정렬처리
+        sorting(number, updown[0]);
+
+        // 결과출력
+        print(number, updown[0]);
+    }
+
+    static int[] input(boolean updown[]){
+
+        Scanner sc = new Scanner(System.in);
+
+        // 입력
+        // 몇개를 정렬?
+        System.out.print("정렬할 수의 갯수 = ");
+        int count = sc.nextInt();
+
+        int number[] = new int[count];
+        // 숫자들을 입력
+        for(int i = 0;i < number.length; i++) {
+            System.out.print((i + 1) + "번째 = ");
+            number[i] = sc.nextInt();
+        }
+
+        //	오름/내림
+        System.out.print("오름(1)/내림(2) = ");
+        int ud = sc.nextInt();
+        if(ud == 1)		updown[0] = true;
+        else			updown[0] = false;
+
+        return number;
+    }
+
+    static int[] sorting(int number[], boolean updown){
+//	오름/내림
+        int temp = 0;
+        for(int i = 0;i < number.length - 1; i++) {
+            for(int j = i+1; j < number.length; j++ ) {
+                if(updown) {	// 오름
+                    if(number[i] > number[j]) {
+                        swapUpgrage(number, i, j);
+                    }
+                } else {			// 내림
+                    if(number[i] < number[j]) {
+                        swapUpgrage(number, i, j);
+                    }
+                }
+            }
+        }
+        return number;
+    }
+
+    private static void swapUpgrage(int[] number, int i, int j) {
+        int temp;
+        temp = number[i];
+        number[i] = number[j];
+        number[j] = temp;
+    }
+
+    static void print(int number[], boolean updown){
+        String message = "";
+        if(updown)	message = "오름차순 정렬입니다";
+        else		message = "내림차순 정렬입니다";
+        System.out.println(message);
+
+        for(int i = 0;i < number.length; i++) {
+            System.out.print(number[i] + " ");
+        }
     }
 }

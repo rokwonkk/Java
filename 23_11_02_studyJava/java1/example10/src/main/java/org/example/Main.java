@@ -129,6 +129,7 @@ public class Main {
 
     static Boolean isNumber(String str) {
 
+        //isEmpty -> str.length = 0 같다.
         if(str.isEmpty() || str == null) return false;
 
         boolean b = true;
