@@ -28,13 +28,13 @@ public class Main {
         // 문자열 src의 문자를 charAt()으로 하나씩 읽어서 변환 후 result에 저장
         String enCode = Encoding(inputedstr);
 
-        System.out.println("inputedsrc:" + inputedstr);
-        System.out.println("enCode:" + enCode);
+        System.out.println("inputedsrc : " + inputedstr);
+        System.out.println("enCode : " + enCode);
 
         //복호화
         String deCode = Decoding(enCode);
 
-        System.out.println("복호화된 코드 : " + deCode);
+        System.out.println("deCode : " + deCode);
 
          /** 2차원 배열 -> 1차원 배열로 (함수화) */
          int arr2[][] = {
@@ -138,10 +138,9 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("암호화할 코드를 입력하시오 >> ");
-        String numStr1 = sc.next();
+        System.out.print("암호화할 코드를 입력하시오 >> ");
 
-        return numStr1;
+        return sc.next();
     }
 
     static int[] Array2toArray(int array2[][]){
