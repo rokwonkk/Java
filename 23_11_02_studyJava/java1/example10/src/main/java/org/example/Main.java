@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -18,17 +20,18 @@ public class Main {
          * 두수를 나눗셈 연산으로 몫과 나머지를 구하는 메소드를 작성
          */
 
-        int num1;
-        int num2;
-        int result, tag[] = new int[1];
-
-        result = getResult(100, 20, tag);
-        System.out.println("몫 = " + result + " 나머지 = " + tag[0]);
+//        int num1;
+//        int num2;
+//        int result, tag[] = new int[1];
+//
+//        result = getResult(7, 2, tag);
+//        System.out.println("몫 = " + result + " 나머지 = " + tag[0]);
 
         /**
          *  두 점 (x, y)와 (x1, y1)간의 거리를 구한다.
+         *  지하철 알람 같은데에서 사용함. ( 안드, 사과 )
          */
-//        System.out.println(getDistance(1,1,2,2));
+//        System.out.println(getDistance(1,1,1,2));
 
         /**
          *  메소드명 : shuffle
@@ -59,16 +62,20 @@ public class Main {
          * 만일 주어진 문자열이 Null이거나 빈 문자열 "" 이라면 false를 반환한다.
          * 반환타입 : boolean
          * 매개변수 : String str - 검사할 문자열
+         * utility 함수 라고도 한다.
+         * 검증, 검사 등등
          */
-//        String str = "122a361451235123412a34";
-//        System.out.println(str+"는 숫자입니까? " + isNumber(str));
-//        str = "5551231a124asda1223";
-//        System.out.println(str+"는 숫자입니까? " + isNumber(str));
+        String str = "5612";
+        System.out.println(str+"는 숫자입니까? " + isNumber(str));
+        str = "55234a51";
+        System.out.println(str+"는 숫자입니까? " + isNumber(str));
+        str = "5523d124512451";
+        System.out.println(str+"는 숫자입니까? " + isNumber(str));
     }
 
     static void getDouble(int[] num1) {
         for (int i = 0; i < num1.length; i++){
-            num1[i] += num1[i];
+            num1[i] = num1[i] * 2;
         }
     }
 
@@ -93,7 +100,7 @@ public class Main {
     static int[] shuffle(int[] original) {
         int temp, temp2;
         //변수 길이 만큼 돌려주고
-        for (int i = 0; i < original.length; i++){
+        for (int i = 0; i < 1000; i++){
             int randomnum1 = (int)(Math.random() * original.length);
             temp = original[randomnum1];
             int randomnum2 = (int)(Math.random() * original.length);
@@ -121,11 +128,14 @@ public class Main {
     }
 
     static Boolean isNumber(String str) {
+
+        if(str.isEmpty() || str == null) return false;
+
         boolean b = true;
         for (int i=0; i<str.length();i++){
-            int c = str.charAt(i);
+            int asc = str.charAt(i);
 
-            if(c < 48 || c > 57){
+            if(asc < 48 || asc > 57){
                 b = false;
                 break;
             }
