@@ -65,12 +65,12 @@ public class Main {
          * utility 함수 라고도 한다.
          * 검증, 검사 등등
          */
-        String str = "5612";
-        System.out.println(str+"는 숫자입니까? " + isNumber(str));
-        str = "55234a51";
-        System.out.println(str+"는 숫자입니까? " + isNumber(str));
-        str = "5523d124512451";
-        System.out.println(str+"는 숫자입니까? " + isNumber(str));
+//        String str = "561212512";
+//        System.out.println(str+"는 숫자입니까? " + isNumber(str));
+//        str = "55234a51";
+//        System.out.println(str+"는 숫자입니까? " + isNumber(str));
+//        str = "5523d124512451";
+//        System.out.println(str+"는 숫자입니까? " + isNumber(str));
     }
 
     static void getDouble(int[] num1) {

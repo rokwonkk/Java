@@ -9,7 +9,6 @@ public class Main {
         /**
          *  임력 -> 숫자 + 문자
          *  암호화, 복호화 함수를 만들자
-         *
          */
 
     // abcdefghijklmnopqrstuvwxyz
@@ -55,6 +54,15 @@ public class Main {
         int arr11[] = Array2toArray(arr22);
         System.out.println(Arrays.toString(arr11));
 
+    }
+
+    static String inputedstr() {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("암호화할 코드를 입력하시오 >> ");
+
+        return sc.next();
     }
 
     static String Encoding(String str){
@@ -132,15 +140,6 @@ public class Main {
             }
         }
         return originalSrc;
-    }
-
-    static String inputedstr() {
-
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("암호화할 코드를 입력하시오 >> ");
-
-        return sc.next();
     }
 
     static int[] Array2toArray(int array2[][]){
