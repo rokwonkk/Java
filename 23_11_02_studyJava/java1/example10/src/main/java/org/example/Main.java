@@ -114,7 +114,7 @@ public class Main {
 
     static int max(int[] data) {
 
-        if (data.length == 0){
+        if (data == null || data.length == 0){
             return -99999;
         }
 
