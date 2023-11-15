@@ -32,27 +32,26 @@ public class Main {
 
         //복호화
         String deCode = Decoding(enCode);
-
         System.out.println("deCode : " + deCode);
 
          /** 2차원 배열 -> 1차원 배열로 (함수화) */
-         int arr2[][] = {
-                 {1,2,3},
-                 {4,5,6}
-         };
-
-        int arr1[] = Array2toArray(arr2);
-        System.out.println(Arrays.toString(arr1));
+//         int arr2[][] = {
+//                 {1,2,3},
+//                 {4,5,6}
+//         };
+//
+//        int arr1[] = Array2toArray(arr2);
+//        System.out.println(Arrays.toString(arr1));
 
          /** 2차원 배열 -> 1차원 배열로 (함수화) */
-         int arr22[][] = {
-                 {11,22,33},
-                 {44,55,66},
-                 {77,88,99}
-         };
-
-        int arr11[] = Array2toArray(arr22);
-        System.out.println(Arrays.toString(arr11));
+//         int arr22[][] = {
+//                 {11,22,33},
+//                 {44,55,66},
+//                 {77,88,99}
+//         };
+//
+//        int arr11[] = Array2toArray(arr22);
+//        System.out.println(Arrays.toString(arr11));
 
     }
 
