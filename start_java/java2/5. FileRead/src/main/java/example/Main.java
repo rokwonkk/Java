@@ -16,7 +16,7 @@ public class Main {
     }
 
     static void strRead() {
-        File file = new File("/Users/rokwon/fileforder/test.txt");
+        File file = new File("/Users/rokwon/fileforder/data.txt");
 
         try {
             FileReader fr = new FileReader(file);
@@ -24,6 +24,7 @@ public class Main {
 
             String str = "";
 
+            //읽어드리는데 널이 아닐때까지 readLine 한 줄 씩 읽어드림
             while ((str = br.readLine()) != null){
                 System.out.println(str);
             }
@@ -37,7 +38,7 @@ public class Main {
     }
 
     static void charRead() {
-        File file = new File("/Users/rokwon/fileforder/test.txt");
+        File file = new File("/Users/rokwon/fileforder/data.txt");
 
         try {
 
