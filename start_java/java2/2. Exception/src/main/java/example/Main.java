@@ -12,6 +12,7 @@ public class Main {
         /**
          *  NullPointerException
          *  배열이 null
+         *  가장 많이 보게되는 예외
          */
         int array[] = null; // 0x34323454 -> 0x00000000
 //        int array[] = new int[5];
@@ -26,7 +27,7 @@ public class Main {
 
         /**
          *  ArrayIndexOutOfBountdsException
-         *  배열 범위 초가
+         *  배열 범위 초과
          */
         int array1[] = {1, 2, 3};
 
