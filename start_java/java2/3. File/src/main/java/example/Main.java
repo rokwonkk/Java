@@ -50,7 +50,7 @@ public class Main {
         }
 
         /** 파일 읽기 막기(읽기 불가능) **/
-        newfile.setReadable(false);
+        newfile.setReadable(true);
 
         /** 파일의 읽기(read)여부 **/
         if (newfile.canRead()){
@@ -68,6 +68,13 @@ public class Main {
             } else {
                 System.out.println("파일을 쓰기를 할 수 없습니다");
         }
+
+        /** 파일 삭제 **/
+//        if(newfile.delete()){
+//            System.out.println("파일이 삭제 되었습니다.");
+//        } else {
+//            System.out.println("파일이 삭제되지 않았습니다.");
+//        }
     }
 
     static void findFileCategory() {
