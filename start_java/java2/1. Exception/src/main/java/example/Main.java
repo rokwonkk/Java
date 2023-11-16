@@ -54,20 +54,39 @@ public class Main {
             }
 
         } catch (ArrayIndexOutOfBoundsException e){
-//            System.out.println("배열의 범위 초과");
+            System.out.println("배열의 범위 초과");
 //            e.printStackTrace();
 //            System.out.println(e.getMessage());
 
         } catch (NumberFormatException e){
             System.out.println("형식이 다른 예외");
 
-        }   catch (Exception e){
-            System.out.println("모든 Exception ");
+//        }   catch (Exception e){
+//            System.out.println("모든 Exception ");
 
         } finally {
             System.out.println("finally 프로그램 끝");
         }
 
         System.out.println("프로그램 끝");
+
+        try {
+            function();
+        } catch (Exception e){
+            System.out.println("ArrayIndexOutOfBoundsException!!!");
+        }
     }
+
+    static void function() throws ArrayIndexOutOfBoundsException{
+        int array[] = {1, 2, 3};
+
+//        try {
+            for (int i = 0; i < 4; i++) {
+                System.out.println(array[i]);
+            }
+//        } catch (ArrayIndexOutOfBoundsException e){
+//            System.out.println("function() 배열 범위초가");
+//        }
+    }
+
 }
