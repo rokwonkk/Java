@@ -16,10 +16,10 @@ public class Main {
 
         //sorTing();
         //sorTing2();
-        //sorTing3();
+        sorTing3();
 
         /* 비교 */
-        sorTingUpgrade();
+        //sorTingUpgrade();
 
         //스왑
         //swap();

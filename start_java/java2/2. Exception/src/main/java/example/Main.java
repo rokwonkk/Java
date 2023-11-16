@@ -3,6 +3,7 @@ package example;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.sql.SQLOutput;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -14,10 +15,20 @@ public class Main {
          *  배열이 null
          *  가장 많이 보게되는 예외
          */
-        int array[] = null; // 0x34323454 -> 0x00000000
-//        int array[] = new int[5];
+        try {
+            NullPointerException();
+        } catch (Exception e){
+            System.out.println("애러를 전달 받았음.");
+            System.out.println("넌 무슨 애러니? " + e);
+        }
 
-        //reference 참조 == pointer == 주소를 저장하는 변수
+        /**
+         *  NullPointerException
+         *  배열이 null
+         *  가장 많이 보게되는 예외
+         */
+        int array[] = null; // 0x34323454 -> 0x00000000
+
         try{
             System.out.println(array.length);
         } catch (NullPointerException e){
@@ -101,5 +112,12 @@ public class Main {
             System.out.println("6. 문자열의 길이 초과인뎅?");
         }
 
+    }
+
+    static void NullPointerException() throws NullPointerException{
+        int array[] = null; // 0x34323454 -> 0x00000000
+
+        //애러가 날 코드
+        System.out.println(array.length);
     }
 }
