@@ -36,7 +36,7 @@ public class Main {
             System.out.println("4.학생정보수정");
             System.out.println("5.학생정보파일로저장");
             System.out.println("6.학생정보파일불러오기");
-
+            System.out.println();
             System.out.print("메뉴 번호를 입력해주세요 >> ");
             int menuNumber = sc.nextInt();
 
@@ -46,32 +46,35 @@ public class Main {
                     //allData(student);
                     break;
                 case 2:
-                    delete(student, count);
+                    //delete(student, count);
+                    delete_teacher(student);
                     break;
                 case 3:
-                    select(student, count);
+                    //select(student, count);
+                    select_teacher(student);
                     break;
                 case 4:
-                    update(student, count);
+                    //update(student, count);
+                    update_teacher(student);
                     break;
                 case 5:
                     saveList(student);
                     break;
                 case 6:
-                    loadList();
+                    loadList(student);
                     break;
             }
         }
     }
 
-    static void loadList() {
+    static void loadList(String[][] student) {
         Scanner sc = new Scanner(System.in);
 
         System.out.print("불러올 파일명 >> ");
         String loadFileName = sc.next();
 
         /* 파일 로딩 후 출력 */
-        fileLoding(loadFileName);
+        fileLoding(loadFileName, student);
     }
 
     static void saveList(String[][] student) {
@@ -86,7 +89,8 @@ public class Main {
         saveFile(f, student);
     }
 
-    static void fileLoding(String loadFile) {
+    static String[][] fileLoding(String loadFile, String[][] student) {
+
         String readFile = "";
         File file = new File("/Users/rokwon/fileforder/"+ loadFile +".txt");
 
@@ -102,14 +106,30 @@ public class Main {
                 }
                 System.out.println(readStr);
             }
+
             br.close();
 
+            int readCount = 0;
+            String[] readDataSplit = readFile.split("\t");
+            for (int i = 0; i < student.length; i++) {
+
+                student[readCount][0] = readDataSplit[0];
+                student[readCount][1] = readDataSplit[1];
+                student[readCount][2] = readDataSplit[2];
+                student[readCount][3] = readDataSplit[3];
+                student[readCount][4] = readDataSplit[4];
+                student[readCount][5] = readDataSplit[5];
+                student[readCount][6] = readDataSplit[6];
+
+                readCount++;
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    return student;
+}
 
     /**
      * 학생 정보 파일 생성한다.
@@ -220,11 +240,44 @@ public class Main {
 
     }
 
-    /**
-     * 학생 정보 검색
-     * @param student
-     * @param count
-     */
+    static void delete_teacher(String[][] student){
+        Scanner sc = new Scanner(System.in);
+
+        //이름입력
+        System.out.print("삭제할 학생의 이름을 입력하세요 >> ");
+        String name = sc.next();
+
+        //검색
+        int findIndex = search(student, name);
+
+        if (findIndex != -1){
+            //찼았음
+            student[findIndex][0] = "";
+            student[findIndex][1] = "0";
+            student[findIndex][2] = "0.0";
+            student[findIndex][3] = "";
+            student[findIndex][4] = "0";
+            student[findIndex][5] = "0";
+            student[findIndex][6] = "0";
+
+            System.out.println("정상적으로 삭제됐습니다.");
+        } else {
+            System.out.println("학생명단에 없습니다");
+        }
+    }
+
+    static int search(String[][] student, String name) {
+        int findIndex = -1;
+        for (int i = 0; i < student.length; i++) {
+            if(name.equals(student[i][0])){
+                //찾았다
+                findIndex = i;
+                break;
+            }
+        }
+        return findIndex;
+    }
+
     static void select(String student[][], int count){
         Scanner sc = new Scanner(System.in);
         System.out.print("검색할 학생 번호를 입력하세요 >> ");
@@ -239,7 +292,36 @@ public class Main {
         System.out.println("영어 점수는 : " + student[count][5] + "입니다");
         System.out.println("수학 점수는 : " + student[count][6] + "입니다");
         System.out.println();
+    }
 
+    /**
+     * 학생 정보 검색
+     * @param student
+     */
+    static void select_teacher(String student[][]){
+        Scanner sc = new Scanner(System.in);
+
+        //이름입력
+        System.out.print("검색할 학생의 이름을 입력하세요 >> ");
+        String name = sc.next();
+
+        //검색
+        int findIndex = search(student, name);
+
+        if (findIndex != -1){
+
+            System.out.println("데이터를 찾았습니다.");
+            System.out.println("이름은 : " + student[findIndex][0] + "입니다");
+            System.out.println("나이는 : " + student[findIndex][1] + "입니다");
+            System.out.println("신장은 : " + student[findIndex][2] + "입니다");
+            System.out.println("주소는 : " + student[findIndex][3] + "입니다");
+            System.out.println("국어 점수는 : " + student[findIndex][4] + "입니다");
+            System.out.println("영어 점수는 : " + student[findIndex][5] + "입니다");
+            System.out.println("수학 점수는 : " + student[findIndex][6] + "입니다");
+            System.out.println();
+        } else {
+            System.out.println("학생명단에 없습니다");
+        }
     }
 
     /**
@@ -276,6 +358,44 @@ public class Main {
         System.out.println("바뀐 국어 점수는 : " + student[count][4] + "입니다");
         System.out.println("바뀐 국어 점수는 : " + student[count][5] + "입니다");
         System.out.println("바뀐 국어 점수는 : " + student[count][6] + "입니다");
+        System.out.println();
+    }
+    static void update_teacher(String student[][]){
+        Scanner sc = new Scanner(System.in);
+
+        //이름입력
+        System.out.print("수정할 학생 이름을 입력하세요 >> ");
+        String name = sc.next();
+
+        //검색
+        int findIndex = search(student, name);
+
+        if (findIndex == -1){
+            System.out.println("학생명단에 없습니다.");
+            return;
+        }
+        System.out.println();
+
+        System.out.println("현재 국어 점수는 : " + student[findIndex][4] + "입니다");
+        System.out.print("바꿀 국어 점수를 입력해주세요 >> ");
+        int updateLang = sc.nextInt();
+        student[findIndex][4] = updateLang + "";
+        System.out.println();
+
+        System.out.println("현재 영어 점수는 : " + student[findIndex][5] + "입니다");
+        System.out.print("바꿀 영어 점수를 입력해주세요 >> ");
+        int updateEng = sc.nextInt();
+        student[findIndex][5] = updateEng + "";
+        System.out.println();
+
+        System.out.println("현재 수학 점수는 : " + student[findIndex][6] + "입니다");
+        System.out.print("바꿀 수학 점수를 입력해주세요 >> ");
+        int updateMath = sc.nextInt();
+        student[findIndex][6] = updateMath + "";
+        System.out.println();
+        System.out.println("바뀐 국어 점수는 : " + student[findIndex][4] + "입니다");
+        System.out.println("바뀐 국어 점수는 : " + student[findIndex][5] + "입니다");
+        System.out.println("바뀐 국어 점수는 : " + student[findIndex][6] + "입니다");
         System.out.println();
     }
 
