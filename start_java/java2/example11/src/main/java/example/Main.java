@@ -16,7 +16,8 @@ public class Main {
 //        example1_1(); //teacher
 //        functionExample1_1();
 
-        example2(); //me
+//        example2(); //me
+//        example2_1(); //teacher
 
     }
 
@@ -193,6 +194,7 @@ public class Main {
         }
         return file;
     }
+
     static void saveFile(File f, String name[]){
         //파일에 쓰기(save)를 한다
         try {
@@ -232,7 +234,6 @@ public class Main {
         }
         return humanName;
     }
-
     private static void example2() {
         File file = new File("/Users/rokwon/fileforder/data.txt");
 
@@ -297,5 +298,78 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    static void example2_1() {
+
+        Scanner sc = new Scanner(System.in);
+
+        String human[][] = {
+                {"홍길동", "24", "서울시"},
+                {"성춘향", "16", "남원시"},
+                {"일지매", "22", "부산시"}
+        };
+
+        /* token을 포함해서 데이터를 편집한다. */
+        String data[] = new String[human.length];
+        for (int i = 0; i < data.length; i++) {
+            data[i] = human[i][0] + "-" + human[i][1] + "-" + human[i][2];
+        }
+
+        System.out.println(Arrays.toString(data));
+
+        File file = new File("/Users/rokwon/fileforder/human.txt");
+        //데이터 저장(쓰기)
+        try {
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+
+            for (int i = 0; i < data.length; i++) {
+                pw.println(data[i]);
+            }
+            pw.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //데이터 불러오기(읽기)
+        String student[][] = new String[3][3];
+
+        try {
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+
+            String str = "";
+            int count = 0;
+            while ((str = br.readLine()) != null){
+                String array[] = str.split("-");
+                student[count][0] = array[0];
+                student[count][1] = array[1];
+                student[count][2] = array[2];
+                count++;
+            }
+            br.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //나이의 합계
+        for (int i = 0; i < student.length; i++) {
+            for (int j = 0; j < student[i].length; j++) {
+                System.out.print(student[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        int ageSum = 0;
+        for (int i = 0; i < student.length; i++) {
+            ageSum = ageSum + Integer.parseInt(student[i][1]);
+        }
+        System.out.println("나이의 총합 : " + ageSum);
     }
 }
