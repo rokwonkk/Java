@@ -43,7 +43,7 @@ public class Main {
             switch (menuNumber){
                 case 1:
                     count = insert(student, count);
-                    //allData(student);
+                    allData(student);
                     break;
                 case 2:
                     //delete(student, count);
@@ -59,9 +59,13 @@ public class Main {
                     break;
                 case 5:
                     saveList(student);
+                    allData(student);
+
                     break;
                 case 6:
                     loadList(student);
+                    allData(student);
+
                     break;
             }
         }
@@ -101,12 +105,11 @@ public class Main {
             String readStr = "";
 
             while ((readStr = br.readLine()) != null) {
-                if (readStr.trim().length() > 0){
+                if (!readStr.trim().isEmpty()){
                     readFile += readStr;
                 }
                 System.out.println(readStr);
             }
-
             br.close();
 
             int readCount = 0;
