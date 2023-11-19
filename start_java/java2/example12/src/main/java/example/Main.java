@@ -22,6 +22,9 @@ public class Main {
          *              5. 파일저장
          *              6. 파일불러오기
          *
+         *              파일 불러오기 후에 추가하고 다시 저장하면 이상한 값들이 추가됨.
+         *              확인해서 수정해야함.
+         *
          */
         Scanner sc = new Scanner(System.in);
         String student[][] = new String[10][7];
@@ -94,6 +97,7 @@ public class Main {
     }
 
     static String[][] fileLoding(String loadFile, String[][] student) {
+
 
         String readFile = "";
         File file = new File("/Users/rokwon/fileforder/"+ loadFile +".txt");
