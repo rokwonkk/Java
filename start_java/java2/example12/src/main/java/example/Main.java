@@ -49,26 +49,19 @@ public class Main {
                     allData(student);
                     break;
                 case 2:
-                    //delete(student, count);
-                    delete_teacher(student);
+                    delete(student, count);
                     break;
                 case 3:
-                    //select(student, count);
-                    select_teacher(student);
+                    select(student, count);
                     break;
                 case 4:
-                    //update(student, count);
-                    update_teacher(student);
+                    update(student, count);
                     break;
                 case 5:
                     saveList(student);
-                    allData(student);
-
                     break;
                 case 6:
                     loadList(student);
-                    allData(student);
-
                     break;
             }
         }
@@ -137,6 +130,8 @@ public class Main {
         }
     return student;
 }
+
+
 
     /**
      * 학생 정보 파일 생성한다.
@@ -247,32 +242,6 @@ public class Main {
 
     }
 
-    static void delete_teacher(String[][] student){
-        Scanner sc = new Scanner(System.in);
-
-        //이름입력
-        System.out.print("삭제할 학생의 이름을 입력하세요 >> ");
-        String name = sc.next();
-
-        //검색
-        int findIndex = search(student, name);
-
-        if (findIndex != -1){
-            //찼았음
-            student[findIndex][0] = "";
-            student[findIndex][1] = "0";
-            student[findIndex][2] = "0.0";
-            student[findIndex][3] = "";
-            student[findIndex][4] = "0";
-            student[findIndex][5] = "0";
-            student[findIndex][6] = "0";
-
-            System.out.println("정상적으로 삭제됐습니다.");
-        } else {
-            System.out.println("학생명단에 없습니다");
-        }
-    }
-
     static int search(String[][] student, String name) {
         int findIndex = -1;
         for (int i = 0; i < student.length; i++) {
@@ -299,36 +268,6 @@ public class Main {
         System.out.println("영어 점수는 : " + student[count][5] + "입니다");
         System.out.println("수학 점수는 : " + student[count][6] + "입니다");
         System.out.println();
-    }
-
-    /**
-     * 학생 정보 검색
-     * @param student
-     */
-    static void select_teacher(String student[][]){
-        Scanner sc = new Scanner(System.in);
-
-        //이름입력
-        System.out.print("검색할 학생의 이름을 입력하세요 >> ");
-        String name = sc.next();
-
-        //검색
-        int findIndex = search(student, name);
-
-        if (findIndex != -1){
-
-            System.out.println("데이터를 찾았습니다.");
-            System.out.println("이름은 : " + student[findIndex][0] + "입니다");
-            System.out.println("나이는 : " + student[findIndex][1] + "입니다");
-            System.out.println("신장은 : " + student[findIndex][2] + "입니다");
-            System.out.println("주소는 : " + student[findIndex][3] + "입니다");
-            System.out.println("국어 점수는 : " + student[findIndex][4] + "입니다");
-            System.out.println("영어 점수는 : " + student[findIndex][5] + "입니다");
-            System.out.println("수학 점수는 : " + student[findIndex][6] + "입니다");
-            System.out.println();
-        } else {
-            System.out.println("학생명단에 없습니다");
-        }
     }
 
     /**
@@ -365,44 +304,6 @@ public class Main {
         System.out.println("바뀐 국어 점수는 : " + student[count][4] + "입니다");
         System.out.println("바뀐 국어 점수는 : " + student[count][5] + "입니다");
         System.out.println("바뀐 국어 점수는 : " + student[count][6] + "입니다");
-        System.out.println();
-    }
-    static void update_teacher(String student[][]){
-        Scanner sc = new Scanner(System.in);
-
-        //이름입력
-        System.out.print("수정할 학생 이름을 입력하세요 >> ");
-        String name = sc.next();
-
-        //검색
-        int findIndex = search(student, name);
-
-        if (findIndex == -1){
-            System.out.println("학생명단에 없습니다.");
-            return;
-        }
-        System.out.println();
-
-        System.out.println("현재 국어 점수는 : " + student[findIndex][4] + "입니다");
-        System.out.print("바꿀 국어 점수를 입력해주세요 >> ");
-        int updateLang = sc.nextInt();
-        student[findIndex][4] = updateLang + "";
-        System.out.println();
-
-        System.out.println("현재 영어 점수는 : " + student[findIndex][5] + "입니다");
-        System.out.print("바꿀 영어 점수를 입력해주세요 >> ");
-        int updateEng = sc.nextInt();
-        student[findIndex][5] = updateEng + "";
-        System.out.println();
-
-        System.out.println("현재 수학 점수는 : " + student[findIndex][6] + "입니다");
-        System.out.print("바꿀 수학 점수를 입력해주세요 >> ");
-        int updateMath = sc.nextInt();
-        student[findIndex][6] = updateMath + "";
-        System.out.println();
-        System.out.println("바뀐 국어 점수는 : " + student[findIndex][4] + "입니다");
-        System.out.println("바뀐 국어 점수는 : " + student[findIndex][5] + "입니다");
-        System.out.println("바뀐 국어 점수는 : " + student[findIndex][6] + "입니다");
         System.out.println();
     }
 
