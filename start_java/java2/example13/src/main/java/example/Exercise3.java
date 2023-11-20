@@ -2,7 +2,7 @@ package example;
 
 import cointgame.CoinGame;
 
-class Exercise3 {
+public class Exercise3 {
     public static void main(String args[]) {
 
         /** 도박장 개장 */

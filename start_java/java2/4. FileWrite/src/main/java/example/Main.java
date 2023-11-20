@@ -6,9 +6,9 @@ public class Main {
     public static void main(String[] args) {
 
         // 한문자씩 쓰기
-        //charWrite();
+        //oneStrWrite();
 
-        // 문장으로 쓰기
+        // 여러문장으로 쓰기
         strWrite();
     }
 
@@ -40,14 +40,14 @@ public class Main {
         }
     }
 
-    static void charWrite() {
+    static void oneStrWrite() {
         /**
          *  파일 쓰기 - 파일이 없는 경우, 생성 + 쓰기가 된다.
          */
         File file = new File("/Users/rokwon/fileforder/test.txt");
 
         try {
-            // 한문자씩 쓰기
+            // 한문장만 쓰기
 //            FileWriter fw = new FileWriter(file);
 //            fw.write("안녕하세요" + "\n");
 //            fw.close();

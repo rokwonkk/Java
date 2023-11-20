@@ -7,7 +7,6 @@ public class Main {
         /**
          *  파일 읽기
          */
-
         //한문자씩 읽음
         //charRead();
 
