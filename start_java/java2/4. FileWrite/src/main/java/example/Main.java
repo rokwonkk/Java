@@ -40,7 +40,7 @@ public class Main {
         }
     }
 
-    static void oneStr() {
+    static void charWrite() {
         /**
          *  파일 쓰기 - 파일이 없는 경우, 생성 + 쓰기가 된다.
          */
