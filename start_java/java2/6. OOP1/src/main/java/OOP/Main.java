@@ -15,6 +15,9 @@ public class Main {
          *  클래스 생성
          *  클래스명 변수 = new 클래스명();
          *
+         * 같은 자료형의 변수의 묶음 == 배열
+         * 다른 자료형의 변수의 묶음 == class
+         *
          */
         MyClass cls = new MyClass();
 //        cls : (Class)변수 == 객체, instance(주체)
