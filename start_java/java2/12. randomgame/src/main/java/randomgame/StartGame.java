@@ -41,7 +41,6 @@ public class StartGame {
 
         System.out.println(playerName[resultUserIndex] + "님 차례입니다");
 
-
         /** 가져갈 모래 수 15 이하 **/
         System.out.print("가져갈 모래 양 = ");
         sand = sc.nextInt();
