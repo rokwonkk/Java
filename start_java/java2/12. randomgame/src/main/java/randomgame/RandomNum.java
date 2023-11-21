@@ -4,6 +4,9 @@ public class RandomNum {
 
     private int random;
 
+    public RandomNum() {
+    }
+
     public int getRandom() {
         return random;
     }
