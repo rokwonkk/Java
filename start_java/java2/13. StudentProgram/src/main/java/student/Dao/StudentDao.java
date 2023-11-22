@@ -1,7 +1,9 @@
 package student.Dao;
 
 import student.Dto.StudentDto;
+import student.file.FileIO;
 
+import java.io.*;
 import java.util.Scanner;
 
 /* Data Access Object : 데이터를 취급하는 클래스 */
@@ -13,8 +15,13 @@ public class StudentDao {
 
     private int count;
 
+    private FileIO fio;
+
     /* 생성자는 호출할 때 딱 한번만 들어옴.*/
     public StudentDao() {
+
+        fio = new FileIO("student");
+        fio.create();
 
         count = 0;
 
@@ -28,6 +35,7 @@ public class StudentDao {
     }
 
     // 추가, 삭제, 검색, 수정 ( CRUD -> create, read, update, delete )
+
     public void insert(){
         System.out.println("학생 정보 입력입니다");
 
@@ -141,6 +149,80 @@ public class StudentDao {
             System.out.println("학생명단에 없습니다.");
         }
     }
+    public void save(){
+        File f = new File("/Users/rokwon/fileforder/student.txt");
+
+        String strLine[] = new String[student.length];
+
+        for (int i = 0; i < student.length; i++) {
+            StudentDto dto = student[i];
+
+            if (dto != null){
+                strLine[i] = student[i].getName() + "-"
+                        + student[i].getAge() + "-"
+                        + student[i].getHeight() + "-"
+                        + student[i].getAddress() + "-"
+                        + student[i].getKor() + "-"
+                        + student[i].getEng() + "-"
+                        + student[i].getMath();
+            } else {
+                strLine[i] = "";
+            }
+        }
+        try {
+            PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(f)));
+            for (String s : strLine) {
+                if(s != null && !s.equals("")) {
+                    pw.println(s);
+                }
+            }
+            pw.close();
+
+        } catch (IOException e) {
+            System.out.println("파일에 저장되지 않았습니다.");
+            e.printStackTrace();
+        }
+        System.out.println("정상적으로 저장되었습니다.");
+    }
+
+    public void load() {
+
+        File f = new File("/Users/rokwon/fileforder/student.txt");
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(f));
+
+            String str = "";
+
+            int loadCount = 0;
+            while ((str = br.readLine()) != null){
+                student[loadCount] = new StudentDto();
+
+                String data[] = str.split("-");
+
+                student[loadCount].setName(data[0]);
+                student[loadCount].setAge(Integer.parseInt(data[1]));
+                student[loadCount].setHeight(Double.parseDouble(data[2]));
+                student[loadCount].setAddress(data[3]);
+                student[loadCount].setKor(Integer.parseInt(data[4]));
+                student[loadCount].setEng(Integer.parseInt(data[5]));
+                student[loadCount].setMath(Integer.parseInt(data[6]));
+
+                loadCount++;
+            }
+            br.close();
+
+            count = loadCount;
+            System.out.println("모든 데이터를 불러왔습니다");
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NullPointerException e){
+            e.printStackTrace();
+        }
+    }
 
     public void allData(){
         for (int i = 0; i < student.length; i++) {
@@ -149,5 +231,53 @@ public class StudentDao {
                 System.out.println(dto.toString());
             }
         }
+    }
+
+    public void save_teacher(){
+        int ci = 0;
+        for (int i = 0; i < student.length; i++) {
+            if(student[i] != null && student[i].getName().equals(" ")){
+                ci++;
+            }
+        }
+
+        //배열
+        String arr[] = new String[ci];
+        int j = 0;
+        for (int i = 0; i < student.length; i++) {
+            if(student[i] != null && student[i].getName().equals(" ")){
+                arr[j] =student[i].toString();
+                j++;
+            }
+        }
+        fio.dataSave(arr);
+    }
+
+    public void load_teacher(){
+        String arr[] = fio.dataLoad();
+
+        if(arr == null || arr.length == 0){
+            count = 0;
+            return;
+        }
+
+
+        count = arr.length;
+
+        // string -> student[]
+        for (int i = 0; i < arr.length; i++) {
+            String split[] = arr[i].split("-");
+
+            String name = split[0];
+            int age = Integer.parseInt(split[1]);
+            Double height = Double.parseDouble(split[2]);
+            String address = split[3];
+            int kor = Integer.parseInt(split[5]);
+            int eng = Integer.parseInt(split[6]);
+            int math = Integer.parseInt(split[7]);
+
+            student[i] = new StudentDto(name, age, height, address, kor, eng, math);
+        }
+        System.out.println("데이터로드 완료");
     }
 }

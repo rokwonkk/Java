@@ -81,17 +81,6 @@ public class StudentDto {
         this.math = math;
     }
 
-//    @Override
-//    public String toString() {
-//        return
-//               name + '\'' +
-//               age +
-//               height +
-//               address + '\'' +
-//               kor +
-//               eng +
-//               math;
-//    }
     @Override
     public String toString() {
         return "StudentDto{" +
