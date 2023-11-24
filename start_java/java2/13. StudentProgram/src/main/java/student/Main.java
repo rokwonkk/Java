@@ -1,6 +1,7 @@
 package student;
 
 import student.Dao.StudentDao;
+import student.Dao.StudentDaoInter;
 
 import java.util.Scanner;
 
@@ -9,7 +10,8 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
-        StudentDao dao = new StudentDao();
+//        StudentDao dao = new StudentDao();
+        StudentDaoInter dao = new StudentDao();
 
         //menu
         while (true){

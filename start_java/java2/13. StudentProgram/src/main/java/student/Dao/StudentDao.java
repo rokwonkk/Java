@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.Scanner;
 
 /* Data Access Object : 데이터를 취급하는 클래스 */
-public class StudentDao {
+public class StudentDao implements StudentDaoInter{
     Scanner sc = new Scanner(System.in);
 
     // 학생 데이터 관리 배열
