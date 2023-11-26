@@ -15,10 +15,6 @@ public class BatterDto extends HumanDto{
         this.hivAvg = hivAvg;
     }
 
-    public BatterDto() {
-
-    }
-
     public String getPosition() {
         return position;
     }

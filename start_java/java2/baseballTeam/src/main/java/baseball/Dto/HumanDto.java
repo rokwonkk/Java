@@ -7,14 +7,15 @@ public class HumanDto {
     private int age;
     private double height;
 
-    public HumanDto() {
-    }
-
     public HumanDto(int number, String name, int age, double height) {
         this.number = number;
         this.name = name;
         this.age = age;
         this.height = height;
+    }
+
+    public HumanDto() {
+
     }
 
     @Override

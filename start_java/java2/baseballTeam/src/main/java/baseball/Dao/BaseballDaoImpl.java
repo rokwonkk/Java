@@ -51,7 +51,7 @@ public class BaseballDaoImpl implements BaseballDao{
             System.out.print("안타 >> ");
             int hit = sc.nextInt();
             System.out.print("타율 >> ");
-            int batavg = sc.nextInt();
+            double batavg = sc.nextDouble();
 
             player[count] = new BatterDto(number,name,age,height,batposition,batcount,hit,batavg);
             count++;
@@ -74,7 +74,7 @@ public class BaseballDaoImpl implements BaseballDao{
             System.out.print("패 >> ");
             int lose = sc.nextInt();
             System.out.print("방어율 >> ");
-            int defence = sc.nextInt();
+            double defence = sc.nextDouble();
 
             player[count] = new PicherDto(number,name,age,height,pitposition,win,lose,defence);
             count++;
@@ -301,37 +301,29 @@ public class BaseballDaoImpl implements BaseballDao{
 
             int loadCount = 0;
             while ((str = br.readLine()) != null){
-//                player[loadCount] = new HumanDto();
-//                HumanDto dto = player[loadCount];
 
                 String data[] = str.split("-");
 
-//                dto.setNumber(Integer.parseInt(data[0]));
-//                dto.setName(data[1]);
-//                dto.setAge(Integer.parseInt(data[2]));
-//                dto.setHeight(Double.parseDouble(data[3]));
+                int number = Integer.parseInt(data[0]);
+                String name = data[1];
+                int age = Integer.parseInt(data[2]);
+                double height = Double.parseDouble(data[3]);
+                String position = data[4];
 
-                if (player[loadCount] instanceof BatterDto batterDto) {
-                    batterDto.setNumber(Integer.parseInt(data[0]));
-                    batterDto.setName(data[1]);
-                    batterDto.setAge(Integer.parseInt(data[2]));
-                    batterDto.setHeight(Double.parseDouble(data[3]));
-                    batterDto.setPosition(data[4]);
-                    batterDto.setBatcount(Integer.parseInt(data[5]));
-                    batterDto.setHit(Integer.parseInt(data[6]));
-                    batterDto.setHivAvg(Double.parseDouble(data[7]));
+                    if (data[4].equals("타자")) {
+                        int batcount = Integer.parseInt(data[5]);
+                        int hit = Integer.parseInt(data[6]);
+                        double hivavg = Double.parseDouble(data[7]);
 
-                    player[loadCount] = new BatterDto(batterDto.getNumber(),batterDto.getName(),batterDto.getAge(),batterDto.getHeight(),batterDto.getPosition(),batterDto.getBatcount(),batterDto.getHit(),batterDto.getHivAvg());
+                        player[loadCount] = new BatterDto(number, name, age, height, position, batcount, hit, hivavg);
 
-                } else if (player[loadCount] instanceof PicherDto picherDto){
-                    picherDto.setPosition(data[4]);
-                    picherDto.setWin(Integer.parseInt(data[5]));
-                    picherDto.setLose(Integer.parseInt(data[6]));
-                    picherDto.setDefence(Double.parseDouble(data[7]));
+                    } else if (data[4].equals("투수")) {
+                        int win = Integer.parseInt(data[5]);
+                        int lose = Integer.parseInt(data[6]);
+                        double defence = Double.parseDouble(data[7]);
 
-                    new PicherDto(Integer.parseInt(data[0]), data[1], Integer.parseInt(data[2]), Double.parseDouble(data[3]), data[4], Integer.parseInt(data[5]), Integer.parseInt(data[6]), Double.parseDouble(data[7]));
-                }
-                System.out.println(player[loadCount].toString());
+                        player[loadCount] = new PicherDto(number, name, age, height, position, win, lose, defence);
+                    }
                 loadCount++;
             }
             br.close();

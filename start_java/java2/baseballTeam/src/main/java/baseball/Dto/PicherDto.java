@@ -15,10 +15,6 @@ public class PicherDto extends HumanDto{
         this.defence = defence;
     }
 
-    public PicherDto() {
-
-    }
-
     public String getPosition() {
         return position;
     }
