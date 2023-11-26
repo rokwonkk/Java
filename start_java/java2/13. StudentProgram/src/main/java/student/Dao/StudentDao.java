@@ -36,6 +36,7 @@ public class StudentDao implements StudentDaoInter{
 
     // 추가, 삭제, 검색, 수정 ( CRUD -> create, read, update, delete )
 
+    @Override
     public void insert(){
         System.out.println("학생 정보 입력입니다");
 
