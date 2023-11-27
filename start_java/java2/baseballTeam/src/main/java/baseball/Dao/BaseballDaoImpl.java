@@ -6,6 +6,7 @@ import baseball.Dto.BatterDto;
 import baseball.file.FileIO;
 
 import java.io.*;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class BaseballDaoImpl implements BaseballDao{
@@ -102,37 +103,41 @@ public class BaseballDaoImpl implements BaseballDao{
 
     @Override
     public void selectPlayer() {
-        Scanner sc = new Scanner(System.in);
+        System.out.println("선수검색입니다.");
         System.out.print("검색할 학생 이름을 입력하세요 >> ");
         String name = sc.next();
         System.out.println();
-        try {
-            for (int i = 0; i < player.length; i++) {
-                String findName = player[i].getName();
 
-                if (name.equals(findName)){
-                    System.out.println("데이터를 찾았습니다");
-                    System.out.println("이름은 : " + player[i].getName() +"입니다" );
-                    System.out.println("나이는 : " + player[i].getAge() +"입니다" );
-                    System.out.println("신장은 : " + player[i].getHeight() +"입니다" );
-
-                    if (player[i] instanceof BatterDto batterDto){
-                        System.out.println("포지션은 : "+ batterDto.getPosition() +"입니다");
-                        System.out.println("타수는 : "+ batterDto.getBatcount() +"입니다");
-                        System.out.println("안타는 : "+ batterDto.getHit() +"입니다");
-                        System.out.println("타율은 : "+ batterDto.getHivAvg() +"입니다");
-
-                    } else if (player[i] instanceof PicherDto picherDto){
-                        System.out.println("포지션은 : "+ picherDto.getPosition() +"입니다");
-                        System.out.println("승리는 : "+ picherDto.getWin() +"번 입니다");
-                        System.out.println("패배는 : "+ picherDto.getLose() +"번 입니다");
-                        System.out.println("방어율은 : "+ picherDto.getDefence() +"입니다");
-                    }
-                    break;
+        int count = 0;
+        for (int i = 0; i < player.length; i++) {
+            HumanDto h = player[i];
+            if (h != null && !h.getName().isEmpty()) {
+                if (name.equals(h.getName())) {
+                    count++;
                 }
             }
-        } catch (NullPointerException e){
-            System.out.println("선수 명단에 없습니다.");
+        }
+
+        if (count == 0){
+            System.out.println("선수명단에 없습니다.");
+            return;
+        }
+
+        HumanDto[] findPlayer = new HumanDto[count];
+        int c = 0;
+        for (int i = 0; i < player.length; i++){
+            HumanDto h = player[i];
+            if (h != null && !h.getName().isEmpty()){
+                if(name.equals((h.getName()))){
+                    findPlayer[c] = player[i];
+                    c++;
+                }
+            }
+        }
+
+        System.out.println("검색된 선수 명단입니다");
+        for (int i = 0; i < findPlayer.length; i++) {
+            System.out.println(findPlayer[i].toString());
         }
     }
 
@@ -152,29 +157,33 @@ public class BaseballDaoImpl implements BaseballDao{
                     System.out.println("이름은 : " + player[i].getName() +"입니다" );
 
                     if (player[i] instanceof BatterDto batterDto){
-                        System.out.println("타수는 : "+ batterDto.getBatcount() +"입니다");
+                        System.out.println("현재 타수는 : "+ batterDto.getBatcount() +"입니다");
                         System.out.print("수정할 타수를 입력하세요 >> ");
                         int updateBatCount = sc.nextInt();
                         batterDto.setBatcount(updateBatCount);
-                        System.out.println("안타는 : "+ batterDto.getHit() +"입니다");
+
+                        System.out.println("현재 안타는 : "+ batterDto.getHit() +"입니다");
                         System.out.print("수정할 안타를 입력하세요 >> ");
                         int updateHit = sc.nextInt();
                         batterDto.setHit(updateHit);
-                        System.out.println("타율은 : "+ batterDto.getHivAvg() +"입니다");
+
+                        System.out.println("현재 타율은 : "+ batterDto.getHivAvg() +"입니다");
                         System.out.print("수정할 타율을 입력하세요 >> ");
                         int updateHivAvg = sc.nextInt();
                         batterDto.setHivAvg(updateHivAvg);
 
                     } else if (player[i] instanceof PicherDto picherDto){
-                        System.out.println("승리는 : "+ picherDto.getWin() +"번 입니다");
+                        System.out.println("현재 승리는 : "+ picherDto.getWin() +"번 입니다");
                         System.out.print("수정할 승리를 입력하세요 >> ");
                         int updateWin = sc.nextInt();
                         picherDto.setWin(updateWin);
-                        System.out.println("패배는 : "+ picherDto.getLose() +"번 입니다");
+
+                        System.out.println("현재 패배는 : "+ picherDto.getLose() +"번 입니다");
                         System.out.print("수정할 패배를 입력하세요 >> ");
                         int updateLose = sc.nextInt();
                         picherDto.setLose(updateLose);
-                        System.out.println("방어율은 : "+ picherDto.getDefence() +"입니다");
+
+                        System.out.println("현재 방어율은 : "+ picherDto.getDefence() +"입니다");
                         System.out.print("수정할 방어율을 입력하세요 >> ");
                         int updateDefence = sc.nextInt();
                         picherDto.setDefence(updateDefence);
@@ -192,7 +201,7 @@ public class BaseballDaoImpl implements BaseballDao{
     public void batAvgDesc() {
         for(int i = 0;i < player.length - 1; i++) {
             for (int j = i + 1; j < player.length; j++) {
-                // player[i], player[j]가 BatterDto 타입인지 확인
+                    // player[i], player[j]가 BatterDto 타입인지 확인
                 if (player[i] instanceof BatterDto batter1 && player[j] instanceof BatterDto batter2) {
                     //System.out.println("여기탐?");
                     // 타율 비교하여 순서 변경
@@ -205,6 +214,7 @@ public class BaseballDaoImpl implements BaseballDao{
                 }
             }
         }
+
         //출력부분
         int rank = 1;
         for (int i = 0; i < player.length; i++) {
@@ -328,7 +338,6 @@ public class BaseballDaoImpl implements BaseballDao{
             }
             br.close();
 
-            count = loadCount;
             System.out.println("모든 데이터를 불러왔습니다");
 
         } catch (FileNotFoundException e) {

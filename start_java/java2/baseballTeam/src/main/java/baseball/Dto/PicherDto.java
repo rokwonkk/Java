@@ -50,7 +50,8 @@ public class PicherDto extends HumanDto{
     @Override
     public String toString() {
         return "PicherDto{" +
-                "position='" + position + '\'' +
+                super.toString()+
+                ", position='" + position + '\'' +
                 ", win=" + win +
                 ", lose=" + lose +
                 ", defence=" + defence +

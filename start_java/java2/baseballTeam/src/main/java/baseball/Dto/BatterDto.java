@@ -47,4 +47,14 @@ public class BatterDto extends HumanDto{
         this.hitAvg = hivAvg;
     }
 
+    @Override
+    public String toString() {
+        return "BatterDto{" +
+                super.toString()+
+                ", position='" + position + '\'' +
+                ", batcount=" + batcount +
+                ", hit=" + hit +
+                ", hitAvg=" + hitAvg +
+                '}';
+    }
 }

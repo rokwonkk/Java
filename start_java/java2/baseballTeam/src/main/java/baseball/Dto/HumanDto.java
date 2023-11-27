@@ -54,5 +54,4 @@ public class HumanDto {
     public String toString() {
         return "Number: " + getNumber() + ", Name: " + getName() + ", Age: " + getAge() + ", Height: " + getHeight();
     }
-
 }
