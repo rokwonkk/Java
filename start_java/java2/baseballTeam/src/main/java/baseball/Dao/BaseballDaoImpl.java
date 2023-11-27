@@ -3,10 +3,9 @@ package baseball.Dao;
 import baseball.Dto.PicherDto;
 import baseball.Dto.HumanDto;
 import baseball.Dto.BatterDto;
-import baseball.file.FileIO;
+import baseball.file.DataProc;
 
 import java.io.*;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class BaseballDaoImpl implements BaseballDao{
@@ -17,17 +16,14 @@ public class BaseballDaoImpl implements BaseballDao{
 
     private int count;
 
-    private FileIO fio;
+    private DataProc dataProc;
 
     public BaseballDaoImpl() {
-
-//        fio = new FileIO("baseball_player");
-//        fio.create();
-
         player = new HumanDto[10];
-
         count = 0;
 
+        dataProc = new DataProc("baseball_player");
+        dataProc.createFile();
     }
 
     @Override
@@ -185,7 +181,7 @@ public class BaseballDaoImpl implements BaseballDao{
 
                         System.out.println("현재 방어율은 : "+ picherDto.getDefence() +"입니다");
                         System.out.print("수정할 방어율을 입력하세요 >> ");
-                        int updateDefence = sc.nextInt();
+                        double updateDefence = sc.nextDouble();
                         picherDto.setDefence(updateDefence);
                     }
                     System.out.println("수정이 끝났습니다.");
@@ -347,5 +343,78 @@ public class BaseballDaoImpl implements BaseballDao{
         } catch (NullPointerException e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void saveAnother() {
+
+        //몇개의 데이터 수 파악
+        int count = 0;
+        for (HumanDto h : player) {
+            if (h != null && !h.getName().isEmpty()) {
+                count++;
+            }
+        }
+
+        if (count == 0){
+            System.out.println("데이터가 없습니다.");
+            return;
+        }
+
+        //(String) 배열설정
+        int c = 0;
+        String saveDatas[] = new String[count];
+        for (HumanDto h : player) {
+            if (h != null && !h.getName().isEmpty()){
+                saveDatas[c] = h.toString();
+                c++;
+            }
+        }
+
+        //저장
+        dataProc.dataSave(saveDatas);
+
+        System.out.println("저장되었습니다");
+    }
+
+    @Override
+    public void loadAnother() {
+
+        String datas[] = dataProc.dataLoad();
+
+        int loadCount = 0;
+        for (String data : datas) {
+
+            String[] split = data.split("-");
+
+            if (split[4].equals("타자")){
+                player[loadCount] = new BatterDto(
+                        Integer.parseInt(split[0]),
+                        split[1],
+                        Integer.parseInt(split[2]),
+                        Double.parseDouble(split[3]),
+                        split[4],
+                        Integer.parseInt(split[5]),
+                        Integer.parseInt(split[6]),
+                        Double.parseDouble(split[7])
+                );
+            }
+            else if (split[4].equals("투수")){
+                player[loadCount] = new PicherDto(
+                        Integer.parseInt(split[0]),
+                        split[1],
+                        Integer.parseInt(split[2]),
+                        Double.parseDouble(split[3]),
+                        split[4],
+                        Integer.parseInt(split[5]),
+                        Integer.parseInt(split[6]),
+                        Double.parseDouble(split[7])
+                );
+            }
+            loadCount++;
+        }
+        count = datas.length;
+
+        System.out.println("데이터를 로드하였습니다.");
     }
 }

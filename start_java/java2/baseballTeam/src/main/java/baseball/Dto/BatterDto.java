@@ -49,12 +49,6 @@ public class BatterDto extends HumanDto{
 
     @Override
     public String toString() {
-        return "BatterDto{" +
-                super.toString()+
-                ", position='" + position + '\'' +
-                ", batcount=" + batcount +
-                ", hit=" + hit +
-                ", hitAvg=" + hitAvg +
-                '}';
+        return super.toString() + "-" + getPosition() + "-" + getBatcount() + "-" + getHit() + "-" + getHivAvg();
     }
 }

@@ -52,6 +52,6 @@ public class HumanDto {
 
     @Override
     public String toString() {
-        return "Number: " + getNumber() + ", Name: " + getName() + ", Age: " + getAge() + ", Height: " + getHeight();
+        return getNumber() + "-" + getName() + "-" + getAge() + "-" + getHeight();
     }
 }

@@ -49,10 +49,12 @@ public class Main {
                     dao.defenceDesc();
                     break;
                 case 7:
-                    dao.save();
+                    //dao.save();
+                    dao.saveAnother();
                     break;
                 case 8:
-                    dao.load();
+                    //dao.load();
+                    dao.loadAnother();
                     break;
             }
         }
