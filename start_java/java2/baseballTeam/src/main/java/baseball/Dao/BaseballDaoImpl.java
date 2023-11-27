@@ -23,9 +23,10 @@ public class BaseballDaoImpl implements BaseballDao{
 //        fio = new FileIO("baseball_player");
 //        fio.create();
 
+        player = new HumanDto[10];
+
         count = 0;
 
-        player = new HumanDto[10];
     }
 
     @Override
@@ -44,16 +45,14 @@ public class BaseballDaoImpl implements BaseballDao{
             int age = sc.nextInt();
             System.out.print("신장 >> ");
             double height = sc.nextDouble();
-            System.out.print("포지션 >> ");
-            String batposition = sc.next();
             System.out.print("타수 >> ");
             int batcount = sc.nextInt();
             System.out.print("안타 >> ");
             int hit = sc.nextInt();
             System.out.print("타율 >> ");
-            double batavg = sc.nextDouble();
+            double hitAvg = sc.nextDouble();
 
-            player[count] = new BatterDto(number,name,age,height,batposition,batcount,hit,batavg);
+            player[count] = new BatterDto(number,name,age,height,"타자",batcount,hit,hitAvg);
             count++;
 
         } else if (position == 2){
@@ -67,8 +66,6 @@ public class BaseballDaoImpl implements BaseballDao{
             int age = sc.nextInt();
             System.out.print("신장 >> ");
             double height = sc.nextDouble();
-            System.out.print("포지션 >> ");
-            String pitposition = sc.next();
             System.out.print("승 >> ");
             int win = sc.nextInt();
             System.out.print("패 >> ");
@@ -76,7 +73,7 @@ public class BaseballDaoImpl implements BaseballDao{
             System.out.print("방어율 >> ");
             double defence = sc.nextDouble();
 
-            player[count] = new PicherDto(number,name,age,height,pitposition,win,lose,defence);
+            player[count] = new PicherDto(number,name,age,height,"투수",win,lose,defence);
             count++;
         }
     }
@@ -208,11 +205,12 @@ public class BaseballDaoImpl implements BaseballDao{
                 }
             }
         }
-
         //출력부분
+        int rank = 1;
         for (int i = 0; i < player.length; i++) {
             if(player[i] instanceof BatterDto batterDto){
-                System.out.println((i+1)+"등 이름 : "+batterDto.getName() +" 타율 : " + batterDto.getHivAvg());
+                System.out.println((rank)+"등 이름 : "+batterDto.getName() +" 타율 : " + batterDto.getHivAvg());
+                rank++;
             }
         }
     }
@@ -235,9 +233,11 @@ public class BaseballDaoImpl implements BaseballDao{
         }
 
         //출력부분
+        int rank = 1;
         for (int i = 0; i < player.length; i++) {
             if(player[i] instanceof PicherDto picherDto){
-                System.out.println((i+1)+"등 이름 : "+picherDto.getName() +" 방어율 : " + picherDto.getDefence());
+                System.out.println((rank)+"등 이름 : "+picherDto.getName() +" 방어율 : " + picherDto.getDefence());
+                rank++;
             }
         }
     }
@@ -313,9 +313,9 @@ public class BaseballDaoImpl implements BaseballDao{
                     if (data[4].equals("타자")) {
                         int batcount = Integer.parseInt(data[5]);
                         int hit = Integer.parseInt(data[6]);
-                        double hivavg = Double.parseDouble(data[7]);
+                        double hitavg = Double.parseDouble(data[7]);
 
-                        player[loadCount] = new BatterDto(number, name, age, height, position, batcount, hit, hivavg);
+                        player[loadCount] = new BatterDto(number, name, age, height, position, batcount, hit, hitavg);
 
                     } else if (data[4].equals("투수")) {
                         int win = Integer.parseInt(data[5]);

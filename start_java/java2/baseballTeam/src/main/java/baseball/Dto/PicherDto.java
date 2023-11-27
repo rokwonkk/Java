@@ -46,4 +46,14 @@ public class PicherDto extends HumanDto{
     public void setDefence(double defence) {
         this.defence = defence;
     }
+
+    @Override
+    public String toString() {
+        return "PicherDto{" +
+                "position='" + position + '\'' +
+                ", win=" + win +
+                ", lose=" + lose +
+                ", defence=" + defence +
+                '}';
+    }
 }

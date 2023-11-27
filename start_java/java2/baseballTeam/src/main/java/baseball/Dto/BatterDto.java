@@ -5,14 +5,14 @@ public class BatterDto extends HumanDto{
     private String position;
     private int batcount;
     private int hit;
-    private double hivAvg;
+    private double hitAvg;
 
-    public BatterDto(int number, String name, int age, double height, String position, int batcount, int hit, double hivAvg) {
+    public BatterDto(int number, String name, int age, double height, String position, int batcount, int hit, double hitAvg) {
         super(number, name, age, height);
         this.position = position;
         this.batcount = batcount;
         this.hit = hit;
-        this.hivAvg = hivAvg;
+        this.hitAvg = hitAvg;
     }
 
     public String getPosition() {
@@ -40,10 +40,11 @@ public class BatterDto extends HumanDto{
     }
 
     public double getHivAvg() {
-        return hivAvg;
+        return hitAvg;
     }
 
     public void setHivAvg(double hivAvg) {
-        this.hivAvg = hivAvg;
+        this.hitAvg = hivAvg;
     }
+
 }

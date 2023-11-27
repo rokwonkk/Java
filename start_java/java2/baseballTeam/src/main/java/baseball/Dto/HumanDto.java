@@ -18,11 +18,6 @@ public class HumanDto {
 
     }
 
-    @Override
-    public String toString() {
-        return "Number: " + getNumber() + ", Name: " + getName() + ", Age: " + getAge() + ", Height: " + getHeight();
-    }
-
     public int getNumber() {
         return number;
     }
@@ -54,4 +49,10 @@ public class HumanDto {
     public void setHeight(double height) {
         this.height = height;
     }
+
+    @Override
+    public String toString() {
+        return "Number: " + getNumber() + ", Name: " + getName() + ", Age: " + getAge() + ", Height: " + getHeight();
+    }
+
 }

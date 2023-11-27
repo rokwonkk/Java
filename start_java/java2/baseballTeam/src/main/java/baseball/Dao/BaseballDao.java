@@ -13,7 +13,6 @@ public interface BaseballDao {
     public void insertPlayer();
     public void deletePlayer();
     public void selectPlayer();
-
     public void updatePlayer();
     public void defenceDesc();
     public void batAvgDesc();
