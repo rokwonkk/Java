@@ -6,21 +6,19 @@ import baseball.Dto.BatterDto;
 import baseball.file.DataProc;
 
 import java.io.*;
-import java.util.Scanner;
+import java.util.*;
 
 public class BaseballDaoImpl implements BaseballDao{
 
     Scanner sc = new Scanner(System.in);
 
-    private HumanDto player[];
-
-    private int count;
+    private List<HumanDto> player;
 
     private DataProc dataProc;
 
     public BaseballDaoImpl() {
-        player = new HumanDto[10];
-        count = 0;
+
+        player = new ArrayList<>();
 
         dataProc = new DataProc("baseball_player");
         dataProc.createFile();
@@ -49,8 +47,7 @@ public class BaseballDaoImpl implements BaseballDao{
             System.out.print("타율 >> ");
             double hitAvg = sc.nextDouble();
 
-            player[count] = new BatterDto(number,name,age,height,"타자",batcount,hit,hitAvg);
-            count++;
+            player.add(new BatterDto(number,name,age,height,"타자",batcount,hit,hitAvg));
 
         } else if (position == 2){
 
@@ -70,8 +67,7 @@ public class BaseballDaoImpl implements BaseballDao{
             System.out.print("방어율 >> ");
             double defence = sc.nextDouble();
 
-            player[count] = new PicherDto(number,name,age,height,"투수",win,lose,defence);
-            count++;
+            player.add(new PicherDto(number,name,age,height,"투수",win,lose,defence));
         }
     }
 
@@ -79,21 +75,19 @@ public class BaseballDaoImpl implements BaseballDao{
     public void deletePlayer() {
         System.out.print("삭제할 선수 이름을 입력하세요 >> ");
         String name = sc.next();
-        try {
-            for (int i = 0; i < player.length; i++) {
-                String findName = player[i].getName();
 
-                if (name.equals(findName)){
-                    for(int j = i; j < player.length - 1; j++){
-                        player[j] = player[j + 1];
-                    }
-                    System.out.println("정상적으로 삭제됐습니다.");
-                    count--;
-                    break;
-                }
+        int findindex = -1;
+        for (int i = 0; i < player.size(); i++) {
+            HumanDto findPlayer = player.get(i);
+
+            if (findPlayer.getName().equals(name)){
+                findindex = i;
+                break;
             }
-        } catch (NullPointerException e){
-            System.out.println("선수명단에 없습니다.");
+        }
+
+        if (findindex != -1){
+            player.remove(findindex);
         }
     }
 
@@ -105,10 +99,10 @@ public class BaseballDaoImpl implements BaseballDao{
         System.out.println();
 
         int count = 0;
-        for (int i = 0; i < player.length; i++) {
-            HumanDto h = player[i];
-            if (h != null && !h.getName().isEmpty()) {
-                if (name.equals(h.getName())) {
+        for (int i = 0; i < player.size(); i++) {
+            HumanDto findSameName = player.get(i);
+            if (findSameName != null && !findSameName.getName().isEmpty()) {
+                if (name.equals(findSameName.getName())) {
                     count++;
                 }
             }
@@ -119,21 +113,28 @@ public class BaseballDaoImpl implements BaseballDao{
             return;
         }
 
-        HumanDto[] findPlayer = new HumanDto[count];
+        HumanDto[] findedPlayer = new HumanDto[count];
         int c = 0;
-        for (int i = 0; i < player.length; i++){
-            HumanDto h = player[i];
-            if (h != null && !h.getName().isEmpty()){
-                if(name.equals((h.getName()))){
-                    findPlayer[c] = player[i];
+        for (int i = 0; i < player.size(); i++){
+            HumanDto findPlayer = player.get(i);
+            if (findPlayer != null && !findPlayer.getName().isEmpty()){
+                if(name.equals((findPlayer.getName()))){
+                    findedPlayer[c] = player.get(i);
                     c++;
                 }
             }
         }
 
         System.out.println("검색된 선수 명단입니다");
-        for (int i = 0; i < findPlayer.length; i++) {
-            System.out.println(findPlayer[i].toString());
+        for (int i = 0; i < findedPlayer.length; i++) {
+            System.out.println(findedPlayer[i].toString());
+        }
+    }
+    @Override
+    public void allData() {
+        for (int i = 0; i < player.size(); i++) {
+            HumanDto dto = player.get(i);
+            System.out.println(dto.toString());
         }
     }
 
@@ -143,79 +144,85 @@ public class BaseballDaoImpl implements BaseballDao{
         System.out.print("수정할 선수 이름을 입력하세요 >> ");
         String name = sc.next();
         System.out.println();
-        try {
-            for (int i = 0; i < player.length; i++) {
-                String findName = player[i].getName();
 
-                if (name.equals(findName)){
-
-                    System.out.println("데이터를 찾았습니다");
-                    System.out.println("이름은 : " + player[i].getName() +"입니다" );
-
-                    if (player[i] instanceof BatterDto batterDto){
-                        System.out.println("현재 타수는 : "+ batterDto.getBatcount() +"입니다");
-                        System.out.print("수정할 타수를 입력하세요 >> ");
-                        int updateBatCount = sc.nextInt();
-                        batterDto.setBatcount(updateBatCount);
-
-                        System.out.println("현재 안타는 : "+ batterDto.getHit() +"입니다");
-                        System.out.print("수정할 안타를 입력하세요 >> ");
-                        int updateHit = sc.nextInt();
-                        batterDto.setHit(updateHit);
-
-                        System.out.println("현재 타율은 : "+ batterDto.getHivAvg() +"입니다");
-                        System.out.print("수정할 타율을 입력하세요 >> ");
-                        int updateHivAvg = sc.nextInt();
-                        batterDto.setHivAvg(updateHivAvg);
-
-                    } else if (player[i] instanceof PicherDto picherDto){
-                        System.out.println("현재 승리는 : "+ picherDto.getWin() +"번 입니다");
-                        System.out.print("수정할 승리를 입력하세요 >> ");
-                        int updateWin = sc.nextInt();
-                        picherDto.setWin(updateWin);
-
-                        System.out.println("현재 패배는 : "+ picherDto.getLose() +"번 입니다");
-                        System.out.print("수정할 패배를 입력하세요 >> ");
-                        int updateLose = sc.nextInt();
-                        picherDto.setLose(updateLose);
-
-                        System.out.println("현재 방어율은 : "+ picherDto.getDefence() +"입니다");
-                        System.out.print("수정할 방어율을 입력하세요 >> ");
-                        double updateDefence = sc.nextDouble();
-                        picherDto.setDefence(updateDefence);
-                    }
-                    System.out.println("수정이 끝났습니다.");
-                    break;
-                }
+        int findindex = -1;
+        for (int i = 0; i < player.size(); i++) {
+            HumanDto findStudent = player.get(i);
+            if (findStudent.getName().equals(name)){
+                findindex = i;
+                break;
             }
-        } catch (NullPointerException e){
-            System.out.println("선수 명단에 없습니다.");
+        }
+
+        if (findindex != -1){
+
+            if (player.get(findindex) instanceof BatterDto batterDto){
+
+                System.out.println("현재 타수는 : "+ batterDto.getBatcount() +"입니다");
+                System.out.print("수정할 타수를 입력하세요 >> ");
+                int updateBatCount = sc.nextInt();
+                batterDto.setBatcount(updateBatCount);
+
+                System.out.println("현재 안타는 : "+ batterDto.getHit() +"입니다");
+                System.out.print("수정할 안타를 입력하세요 >> ");
+                int updateHit = sc.nextInt();
+                batterDto.setHit(updateHit);
+
+                System.out.println("현재 타율은 : "+ batterDto.getHivAvg() +"입니다");
+                System.out.print("수정할 타율을 입력하세요 >> ");
+                double updateHivAvg = sc.nextDouble();
+                batterDto.setHivAvg(updateHivAvg);
+
+            } else if (player.get(findindex) instanceof PicherDto picherDto) {
+
+                System.out.println("현재 승리는 : "+ picherDto.getWin() +"번 입니다");
+                System.out.print("수정할 승리를 입력하세요 >> ");
+                int updateWin = sc.nextInt();
+                picherDto.setWin(updateWin);
+
+                System.out.println("현재 패배는 : "+ picherDto.getLose() +"번 입니다");
+                System.out.print("수정할 패배를 입력하세요 >> ");
+                int updateLose = sc.nextInt();
+                picherDto.setLose(updateLose);
+
+                System.out.println("현재 방어율은 : "+ picherDto.getDefence() +"입니다");
+                System.out.print("수정할 방어율을 입력하세요 >> ");
+                double updateDefence = sc.nextDouble();
+                picherDto.setDefence(updateDefence);
+
+            }
+
+            System.out.println("수정이 끝났습니다.");
+        }
+
+        for (HumanDto s : player) {
+            System.out.println(s.toString());
         }
     }
 
     @Override
     public void batAvgDesc() {
-        for(int i = 0;i < player.length - 1; i++) {
-            for (int j = i + 1; j < player.length; j++) {
-                    // player[i], player[j]가 BatterDto 타입인지 확인
-                if (player[i] instanceof BatterDto batter1 && player[j] instanceof BatterDto batter2) {
-                    //System.out.println("여기탐?");
-                    // 타율 비교하여 순서 변경
-                    if (batter1.getHivAvg() < batter2.getHivAvg()) {
-                        // Swap
-                        HumanDto temp = player[i];
-                        player[i] = player[j];
-                        player[j] = temp;
-                    }
-                }
-            }
-        }
+        // 리스트를 내림차순으로 정렬
+        player.sort(new Comparator<HumanDto>() {
+            @Override
+            public int compare(HumanDto obj1, HumanDto obj2) {
+                // HumanDto가 BatterDto 타입인지 확인
+                if (obj1 instanceof BatterDto && obj2 instanceof BatterDto) {
+                    BatterDto batter1 = (BatterDto) obj1;
+                    BatterDto batter2 = (BatterDto) obj2;
 
-        //출력부분
+                    // 타율 비교하여 내림차순 정렬
+                    return Double.compare(batter2.getHivAvg(), batter1.getHivAvg());
+                }
+                return 0; // 다른 타입이면 일단 0 반환
+            }
+        });
+
         int rank = 1;
-        for (int i = 0; i < player.length; i++) {
-            if(player[i] instanceof BatterDto batterDto){
-                System.out.println((rank)+"등 이름 : "+batterDto.getName() +" 타율 : " + batterDto.getHivAvg());
+        // 정렬된 리스트 출력
+        for (HumanDto dto : player) {
+            if (dto instanceof BatterDto batterDto) {
+                System.out.println((rank) + "등 이름: " + batterDto.getName() + " 타율: " + batterDto.getHivAvg());
                 rank++;
             }
         }
@@ -223,26 +230,26 @@ public class BaseballDaoImpl implements BaseballDao{
 
     @Override
     public void defenceDesc() {
-        for(int i = 0;i < player.length - 1; i++) {
-            for (int j = i + 1; j < player.length; j++) {
-                // player[i], player[j]가 PicherDto 타입인지 확인
-                if (player[i] instanceof PicherDto picher1 && player[j] instanceof PicherDto picher2) {
-                    // 방어율을 비교하여 순서 변경
-                    if (picher1.getDefence() > picher2.getDefence()) {
-                        // Swap
-                        HumanDto temp = player[i];
-                        player[i] = player[j];
-                        player[j] = temp;
-                    }
-                }
-            }
-        }
+        player.sort(new Comparator<HumanDto>() {
+            @Override
+            public int compare(HumanDto obj1, HumanDto obj2) {
+                // HumanDto가 BatterDto 타입인지 확인
+                if (obj1 instanceof PicherDto && obj2 instanceof PicherDto) {
+                    PicherDto picher1 = (PicherDto) obj1;
+                    PicherDto picher2 = (PicherDto) obj2;
 
-        //출력부분
+                    // 타율 비교하여 내림차순 정렬
+                    return Double.compare(picher1.getDefence(), picher2.getDefence());
+                }
+                return 0; // 다른 타입이면 일단 0 반환
+            }
+        });
+
+        // 정렬된 리스트 출력
         int rank = 1;
-        for (int i = 0; i < player.length; i++) {
-            if(player[i] instanceof PicherDto picherDto){
-                System.out.println((rank)+"등 이름 : "+picherDto.getName() +" 방어율 : " + picherDto.getDefence());
+        for (HumanDto dto : player) {
+            if (dto instanceof PicherDto picherDto) {
+                System.out.println((rank) + "등 이름: " + picherDto.getName() + " 방어율: " + picherDto.getDefence());
                 rank++;
             }
         }
@@ -253,23 +260,23 @@ public class BaseballDaoImpl implements BaseballDao{
 
         File f = new File("/Users/rokwon/fileforder/baseball_player.txt");
 
-        String strLine[] = new String[player.length];
+        String strLine[] = new String[player.size()];
 
-        for (int i = 0; i < player.length; i++) {
-            HumanDto dto = player[i];
+        for (int i = 0; i < player.size(); i++) {
+            HumanDto dto = player.get(i);
 
             if (dto != null){
-                strLine[i] = player[i].getNumber() + "-"
-                        + player[i].getName() + "-"
-                        + player[i].getAge() + "-"
-                        + player[i].getHeight() + "-";
+                strLine[i] = dto.getNumber() + "-"
+                        + dto.getName() + "-"
+                        + dto.getAge() + "-"
+                        + dto.getHeight() + "-";
 
-                if (player[i] instanceof BatterDto batterDto) {
+                if (dto instanceof BatterDto batterDto) {
                     strLine[i] += batterDto.getPosition() + "-"
                             + batterDto.getBatcount() + "-"
                             + batterDto.getHit() + "-"
                             + batterDto.getHivAvg();
-                } else if (player[i] instanceof PicherDto picherDto) {
+                } else if (dto instanceof PicherDto picherDto) {
                     strLine[i] += picherDto.getPosition() + "-"
                             + picherDto.getWin() + "-"
                             + picherDto.getLose() + "-"
@@ -282,7 +289,7 @@ public class BaseballDaoImpl implements BaseballDao{
         try {
             PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(f)));
             for (String s : strLine) {
-                if(s != null && !s.equals("")) {
+                if(s != null && !s.isEmpty()) {
                     pw.println(s);
                 }
             }
@@ -298,14 +305,14 @@ public class BaseballDaoImpl implements BaseballDao{
     @Override
     public void load() {
 
+        player.clear();
+
         File f = new File("/Users/rokwon/fileforder/baseball_player.txt");
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(f));
 
             String str = "";
-
-            int loadCount = 0;
             while ((str = br.readLine()) != null){
 
                 String data[] = str.split("-");
@@ -321,16 +328,15 @@ public class BaseballDaoImpl implements BaseballDao{
                         int hit = Integer.parseInt(data[6]);
                         double hitavg = Double.parseDouble(data[7]);
 
-                        player[loadCount] = new BatterDto(number, name, age, height, position, batcount, hit, hitavg);
+                        player.add(new BatterDto(number, name, age, height, position, batcount, hit, hitavg));
 
                     } else if (data[4].equals("투수")) {
                         int win = Integer.parseInt(data[5]);
                         int lose = Integer.parseInt(data[6]);
                         double defence = Double.parseDouble(data[7]);
 
-                        player[loadCount] = new PicherDto(number, name, age, height, position, win, lose, defence);
+                        player.add(new PicherDto(number, name, age, height, position, win, lose, defence));
                     }
-                loadCount++;
             }
             br.close();
 
@@ -382,13 +388,12 @@ public class BaseballDaoImpl implements BaseballDao{
 
         String datas[] = dataProc.dataLoad();
 
-        int loadCount = 0;
         for (String data : datas) {
 
             String[] split = data.split("-");
 
             if (split[4].equals("타자")){
-                player[loadCount] = new BatterDto(
+                player.add(new BatterDto(
                         Integer.parseInt(split[0]),
                         split[1],
                         Integer.parseInt(split[2]),
@@ -397,10 +402,10 @@ public class BaseballDaoImpl implements BaseballDao{
                         Integer.parseInt(split[5]),
                         Integer.parseInt(split[6]),
                         Double.parseDouble(split[7])
-                );
+                ));
             }
             else if (split[4].equals("투수")){
-                player[loadCount] = new PicherDto(
+                player.add(new PicherDto(
                         Integer.parseInt(split[0]),
                         split[1],
                         Integer.parseInt(split[2]),
@@ -409,12 +414,9 @@ public class BaseballDaoImpl implements BaseballDao{
                         Integer.parseInt(split[5]),
                         Integer.parseInt(split[6]),
                         Double.parseDouble(split[7])
-                );
+                ));
             }
-            loadCount++;
         }
-        count = datas.length;
-
         System.out.println("데이터를 로드하였습니다.");
     }
 }
