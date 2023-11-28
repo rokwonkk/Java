@@ -182,6 +182,8 @@ public class StudentDaoImpl implements StudentDao {
 
     public void load() {
 
+        student.clear();
+
         File f = new File("/Users/rokwon/fileforder/student.txt");
 
         try {
@@ -218,9 +220,7 @@ public class StudentDaoImpl implements StudentDao {
     public void allData(){
         for (int i = 0; i < student.size(); i++) {
             StudentDto dto = student.get(i);
-            if (dto != null){
-                System.out.println(dto.toString());
-            }
+            System.out.println(dto.toString());
         }
     }
 
