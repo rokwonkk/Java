@@ -1,7 +1,7 @@
 package student;
 
+import student.Dao.StudentDaoImpl;
 import student.Dao.StudentDao;
-import student.Dao.StudentDaoInter;
 
 import java.util.Scanner;
 
@@ -11,7 +11,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
 //        StudentDao dao = new StudentDao();
-        StudentDaoInter dao = new StudentDao();
+        StudentDao dao = new StudentDaoImpl();
 
         //menu
         while (true){
