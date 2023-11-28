@@ -121,7 +121,7 @@ public class StudentDaoImpl implements StudentDao {
         }
 
         if (findindex != -1){
-            StudentDto updateStudent = student.get(0);
+            StudentDto updateStudent = student.get(findindex);
             System.out.println("국어점수는 : " + updateStudent.getKor() +"입니다" );
             System.out.print("수정할 국어 점수를 입력하세요 >> ");
             int updateKor = sc.nextInt();
