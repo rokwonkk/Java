@@ -15,15 +15,15 @@ public class Main {
 //        int temp = box.getTemp();
 
         //Object 자료형만 가능하다.
-        Box<Integer> iBox = new Box<Integer>(333);
-
-        Box<Double> dBox = new Box<Double>(0.111);
-
-        Box<String> sBox = new Box<String>("ㅋㅋㅋㅋ킄");
-
-        System.out.println(iBox.getTemp());
-        System.out.println(dBox.getTemp());
-        System.out.println(sBox.getTemp());
+//        Box<Integer> iBox = new Box<Integer>(333);
+//
+//        Box<Double> dBox = new Box<Double>(0.111);
+//
+//        Box<String> sBox = new Box<String>("ㅋㅋㅋㅋ킄");
+//
+//        System.out.println(iBox.getTemp());
+//        System.out.println(dBox.getTemp());
+//        System.out.println(sBox.getTemp());
 
         BoxMap<Integer, String> bMap = new BoxMap<Integer, String>(111, "Hello");
         System.out.println(bMap.toString());
@@ -81,9 +81,9 @@ class BoxMap<Key, Value>{
 
     @Override
     public String toString() {
-        return "BoxMap{" +
-                "key=" + key +
+        return "BoxMap {" +
+                " key=" + key +
                 ", value=" + value +
-                '}';
+                " }";
     }
 }

@@ -3,6 +3,11 @@ package example;
 public class Main {
     public static void main(String[] args) {
 
+        {
+            int num;
+        }
+
+
         /**
          *  local variable : 지역변수 -> stack
          *  parameter variable : (지역변수) -> stack
@@ -31,6 +36,9 @@ public class Main {
 
         MyClass cls1 = new MyClass();
         cls1.func();
+        cls1.func();
+
+        cls.func();
         cls1.func();
     }
 

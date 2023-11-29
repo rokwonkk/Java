@@ -4,15 +4,15 @@ public class Parent {
 
     private String name;
     public Parent() {
-        System.out.println("Parent Parent()");
+        //System.out.println("Parent Parent()");
     }
 
-    public Parent(String name){
-        this.name = name;
-        System.out.println("Parent Parent(String name) name = " + this.name);
-    }
+//    public Parent(String name){
+//        this.name = name;
+//        System.out.println("Parent Parent(String name) name = " + this.name);
+//    }
 
-    public void method(){
-        System.out.println("Parent method()");
+    public void Method(){
+        System.out.println("나무빗자루");
     }
 }

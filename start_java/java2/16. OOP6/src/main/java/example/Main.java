@@ -21,17 +21,17 @@ public class Main {
         /**
          * 차일드 들을 상위 부모클래스의 parent에 묶어줌.
          */
-        Parent p = new Child();
-        p.method();
-
-        Cat cat[] = new Cat[10];
-        Dog dog[] = new Dog[10];
-        Cow cow[] = new Cow[10];
-
-        cat[0] = new Cat();
-        cat[1] = new Cat();
-        dog[0] = new Dog();
-        cow[0] = new Cow();
+//        Parent p = new Child();
+//        p.method();
+//
+//        Cat cat[] = new Cat[10];
+//        Dog dog[] = new Dog[10];
+//        Cow cow[] = new Cow[10];
+//
+//        cat[0] = new Cat();
+//        cat[1] = new Cat();
+//        dog[0] = new Dog();
+//        cow[0] = new Cow();
 
 
         /**************************/

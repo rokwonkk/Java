@@ -3,6 +3,7 @@ package example;
 import example.inter.HeClass;
 import example.inter.MyClass;
 import example.inter.MyInterface;
+import example.inter.YouInterface;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,24 +19,23 @@ public class Main {
          *               (확장성에서 우수하다)
          *
          */
-
-        MyInterface myInter = new MyInterface() {
-            @Override
-            public void abMethod() {
-                System.out.println("MyInterface abMethod()");
-            }
-        };
-        myInter.abMethod();
+//        MyInterface myInter = new MyInterface() {
+//            @Override
+//            public void abMethod() {
+//                System.out.println("MyInterface abMethod()");
+//            }
+//        };
+//        myInter.abMethod();
 
         MyClass myCls = new MyClass();
         myCls.abMethod();
-
-        MyInterface my = new MyClass();
-        my.abMethod();
-
-        HeClass hc = new HeClass();
-        hc.abMethod();
-        hc.func();
+//
+//        MyInterface my = new MyClass();
+//        my.abMethod();
+//
+//        HeClass hc = new HeClass();
+//        hc.abMethod();
+//        hc.func();
     }
 }
 
@@ -43,15 +43,19 @@ public class Main {
 /**
  * //자바에서는 다중상속이 불가능하다
  */
-//class ParentOne{
-//
-//}
-//
-//class ParentTwo{
-//
-//}
-//
-//
-//class Child extends ParentOne, ParentTwo{
-//
-//}
+class ParentOne{
+
+}
+
+class ParentTwo{
+
+}
+
+
+class Child extends ParentOne, ParentTwo{
+
+}
+
+class Child implements MyInterface, YouInterface{
+
+}

@@ -34,11 +34,26 @@ public class Main {
 //        ac.abstractMethod();
 
         //3.
-        AbstractClass ac = new MyClass();
-        ac.method();
-        ac.abstractMethod();
+//        AbstractClass ac = new MyClass();
+//        ac.method();
+//        ac.abstractMethod();
+
+
+        MyClass myClass = new MyClass();
+        myClass.name = "람보르기니";
+        myClass.money = 200;
+        myClass.abstractMethod();
+
+
+        YouClass youClass = new YouClass();
+        youClass.name = "페라리";
+        youClass.money = 150;
+        youClass.loan = true;
+        youClass.abstractMethod();
     }
 }
+
+
 
 abstract class AbstractClass{
 
@@ -53,8 +68,21 @@ abstract class AbstractClass{
 }
 
 class MyClass extends AbstractClass{
+
+    String name;
+    int money;
     @Override
     public void abstractMethod(){
-        System.out.println("MyClass abstractMethod()");
+        System.out.println("내차는 "+name+" 가격은 : " + money);
+    }
+}
+class YouClass extends AbstractClass{
+
+    String name;
+    int money;
+    boolean loan;
+    @Override
+    public void abstractMethod(){
+        System.out.println("친구차는 "+name+" 가격은 : "+money+" 대출여부 : "+loan);
     }
 }
