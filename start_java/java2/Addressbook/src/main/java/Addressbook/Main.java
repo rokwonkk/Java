@@ -1,7 +1,7 @@
 package Addressbook;
 
-import Addressbook.dta.MemberDao;
-import Addressbook.dta.MemberDaoImpl;
+import Addressbook.dao.MemberDao;
+import Addressbook.dao.MemberDaoImpl;
 import Addressbook.file.FileIO;
 
 import java.util.Scanner;

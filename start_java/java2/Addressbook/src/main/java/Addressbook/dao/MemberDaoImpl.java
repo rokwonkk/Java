@@ -1,4 +1,4 @@
-package Addressbook.dta;
+package Addressbook.dao;
 
 import Addressbook.dto.MemberDto;
 import Addressbook.member.AddressMember;
@@ -226,7 +226,7 @@ public class MemberDaoImpl implements MemberDao{
         int selectMember = sc.nextInt();
 
         if (selectMember >= 1 && selectMember <= findMembers.size()) {
-            MemberDto updateMember = am.list.get(findindex);
+            MemberDto updateMember = am.list.get(selectMember);
 
             System.out.println("나이는 : " + updateMember.getAge() +"입니다" );
             System.out.print("수정할 나이를 입력하세요 >> ");

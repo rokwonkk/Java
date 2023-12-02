@@ -1,4 +1,4 @@
-package Addressbook.dta;
+package Addressbook.dao;
 
 public interface MemberDao {
 
