@@ -101,9 +101,7 @@ public class MemberDaoImpl implements MemberDao{
             if(findMembers.isEmpty()){
                 System.out.println("사람을 찾을 수 없습니다.");
                 return;
-            }
-
-            if (findMembers.size() == 1) {
+            } else if (findMembers.size() == 1) {
                 //System.out.println("여기 타니?");
                 for (int i= 0; i < findMembers.size(); i++){
                    MemberDto findMember = findMembers.get(i);
