@@ -1,2 +1,7 @@
-package factory;public interface weapon {
+package factory.weapon;
+
+public interface Weapon {
+
+    void DrawWeapon();
+
 }

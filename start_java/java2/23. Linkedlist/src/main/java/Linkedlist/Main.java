@@ -18,30 +18,40 @@ public class Main {
 
 //        ArrayList<String> list = new ArrayList<>();
 
-        ArrayList<String> arrList = new ArrayList<String>();
-        arrList.add("Giants");
-        arrList.add("Tigers");
-        arrList.add("Twins");
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("데리버거");
+        list.add("불고기버거");
+        list.add("새우버거");
 
-        LinkedList<String> linkList = new LinkedList<String>(arrList);
 
-        for (String s : linkList) {
-            System.out.println(s);
-        }
+
+        LinkedList<String> linkList = new LinkedList<String>(list);
+
+//        for (String s : linkList) {
+//            System.out.println(s);
+//        }
 
         System.out.println();
 
         //맨 앞의 Node에 element(object)를 추가
+
         // 0번제에 하나의 객체를 추가
-        linkList.addFirst("Eagles");
+        linkList.addFirst("햄버거");
 
-        linkList.addLast("Bears");
+        linkList.addLast("스페셜 햄버거");
 
-        for (String s : linkList) {
-            System.out.println(s);
-        }
+        System.out.println("linkList.get(0) : " + linkList.get(0));
+        System.out.println("linkList.get(1) : " + linkList.get(1));
+        System.out.println("linkList.get(2) : " + linkList.get(2));
+        System.out.println("linkList.get(3) : " + linkList.get(3));
+        System.out.println("linkList.get(4) : " + linkList.get(4));
 
-        System.out.println();
+//
+//        for (String s : linkList) {
+//            System.out.println(s);
+//        }
+//
+//        System.out.println();
 
         /**
          *  iterator : 반복자 == 포인터(주소)

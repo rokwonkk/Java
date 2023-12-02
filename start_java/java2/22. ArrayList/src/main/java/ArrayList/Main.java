@@ -126,192 +126,208 @@ public class Main {
 //            System.out.println(i +" : " + find3);
 //        }
 
-        List<String> list1 = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
 
         //추가
-        list1.add("배움의");
-        list1.add("깊이는");
-        list1.add("끝이");
-        list1.add("없다");
+        list.add("배움의");
+        list.add("깊이는");
+        list.add("끝이");
+        list.add("없다");
+
+        String str = "자바는";
+        list.add(0, str);
+
+        list.remove(2);
+
+        System.out.println("list.size() : " + list.size());
+        System.out.println("list.contains(\"자바는\") : " + list.contains("자바는"));
+
+//        for (int i = 0; i < list.size(); i++) {
+//            System.out.print(list.get(i) + " ");
+//        }
+
+//        for (String s : list) {
+//            System.out.print(s + " ");
+//        }
 
         //원하는 위치에 추가
-        String addStr = "자바의";
-        list1.add(0, addStr);
+//        String addStr = "자바의";
+//        list1.add(0, addStr);
 
         //출력
-        for (String s : list1) {
-            System.out.print(s + " ");
-        }
-
-        System.out.println();
-        //삭제
-        list1.remove(1);
-
-        //출력
-        for (String s : list1) {
-            System.out.print(s + " ");
-        }
-
-        System.out.println();
-
-        //검색
-        int findStr = list1.indexOf("없다");
-
-        int findData = -1;
-        for (int i = 0 ; i < list1.size(); i++){
-            String n = list1.get(i);
-            if(n.equals("없다")){
-                findData = i;
-                break;
-            }
-        }
-        System.out.println("findData : " + findData);
-
-        String updateStr = "깊이와 배움은";
-        list1.set(1, updateStr);
-        for (String s : list1) {
-            System.out.print(s + " ");
-        }
-
-        System.out.println();
-        System.out.println("-------------------------------------------------------------");
-
-        List<HumanDto> hlist = new ArrayList<HumanDto>();
-        //추가 방법1
-        String name = "홍길동";
-        int age = 24;
-        double height = 172.1;
-
-        HumanDto dto = new HumanDto(name, age, height);
-        hlist.add(dto);
-
-        //추가 방법2
-        hlist.add(new HumanDto("성춘향", 16, 158.4));
-        hlist.add(new HumanDto("일지매", 21, 181.1));
-        hlist.add(new HumanDto("홍두께", 28, 179.0));
-
-        for (int i = 0; i < hlist.size(); i++) {
-            HumanDto h = hlist.get(i);
-
+//        for (String s : list1) {
+//            System.out.print(s + " ");
+//        }
+//
+//        System.out.println();
+//        //삭제
+//        list1.remove(1);
+//
+//        //출력
+//        for (String s : list1) {
+//            System.out.print(s + " ");
+//        }
+//
+//        System.out.println();
+//
+//        //검색
+//        int findStr = list1.indexOf("없다");
+//
+//        int findData = -1;
+//        for (int i = 0 ; i < list1.size(); i++){
+//            String n = list1.get(i);
+//            if(n.equals("없다")){
+//                findData = i;
+//                break;
+//            }
+//        }
+//        System.out.println("findData : " + findData);
+//
+//        String updateStr = "깊이와 배움은";
+//        list1.set(1, updateStr);
+//        for (String s : list1) {
+//            System.out.print(s + " ");
+//        }
+//
+//        System.out.println();
+//        System.out.println("-------------------------------------------------------------");
+//
+//        List<HumanDto> hlist = new ArrayList<HumanDto>();
+//        //추가 방법1
+//        String name = "홍길동";
+//        int age = 24;
+//        double height = 172.1;
+//
+//        HumanDto dto = new HumanDto(name, age, height);
+//        hlist.add(dto);
+//
+//        //추가 방법2
+//        hlist.add(new HumanDto("성춘향", 16, 158.4));
+//        hlist.add(new HumanDto("일지매", 21, 181.1));
+//        hlist.add(new HumanDto("홍두께", 28, 179.0));
+//
+//        for (int i = 0; i < hlist.size(); i++) {
+//            HumanDto h = hlist.get(i);
+//
+////            System.out.println(h.toString());
+//            System.out.println(h.getName());
+//        }
+//
+//        for (HumanDto h : hlist) {
 //            System.out.println(h.toString());
-            System.out.println(h.getName());
-        }
-
-        for (HumanDto h : hlist) {
-            System.out.println(h.toString());
-        }
-        System.out.println();
-
-        //원하는 위치에 추가
-        HumanDto addhuman = new HumanDto("홍두께", 25, 176.9);
-        hlist.add(1, addhuman);
-
-        for (HumanDto h : hlist) {
-            System.out.println(h.toString());
-        }
-        System.out.println();
-
-        //삭제
-        int findindex = -1;
-        for (int i = 0; i < hlist.size(); i++) {
-
-            HumanDto h = hlist.get(i);
-            if (h.getName().equals("성춘향")){
-                findindex = i;
-                break;
-            }
-        }
-
-        if (findindex != -1){
-            hlist.remove(findindex);
-        }
-
-        for (HumanDto h : hlist) {
-            System.out.println(h.toString());
-        }
-
-        System.out.println();
-
-        //새로운 List를 또 만들어서 검색 동명이인을 찾아서 거기다 넣어두어서 동명이인 출력
-        List<HumanDto> findList = new ArrayList<HumanDto>();
-        for (int i = 0; i < hlist.size(); i++) {
-            HumanDto h = hlist.get(i);
-
-            if (h.getName().equals("홍두께")){
-                findList.add(h);
-            }
-        }
-        for (HumanDto h : findList) {
-            System.out.println(h.toString());
-        }
-
-        //수정
-        findindex = -1;
-        for (int i = 0; i < hlist.size(); i++) {
-            HumanDto h = hlist.get(i);
-            if (h.getName().equals("성춘향")){
-                findindex = i;
-                break;
-            }
-        }
-
-        System.out.println();
-
-        //list 안에 Object를 변경하는 것을 의미 ( 일지매 -> 아무게 )
-        HumanDto hman = new HumanDto("아무게", 31, 177.7);
-        hlist.set(2, hman);
-
-        for (HumanDto h : hlist) {
-            System.out.println(h.toString());
-        }
-
-        System.out.println();
-        //list 안에 데이터를 수정하는 것을 의미 홍길동 (키, 나이 수정) 찾았다고 가정.
-        HumanDto man = hlist.get(0);
-        man.setAge(20);
-        man.setHeight(180.0);
-
-        for (HumanDto h : hlist) {
-            System.out.println(h.toString());
-        }
-
-        //참고 Object는 모든것을 담는다.
-        List<Object> allDataList = new ArrayList<>();
-        allDataList.add(new String("하이"));
-        allDataList.add(new HumanDto("신하이",23,521.1));
-        allDataList.add(hlist);
-
-        System.out.println();
-
-        //Array -> list
-        String arr[] = {"hello", "world", "hi"};
-
-        //이렇게 하면 list로 변경은 되지만 list를 정상적으로 사용할 수 없다.
-        //List<String> li = Arrays.asList(arr);
-
-        List<String> li = new ArrayList<String>();
-        li.addAll(Arrays.asList(arr)); // list에 추가하는 부분
-
-        li.add(new String("good"));
-
-        for (int i = 0; i < li.size(); i++) {
-            String s = li.get(i);
-            System.out.println(s);
-        }
-
-        System.out.println();
-
-        //list -> Array
-        List<String> slist = new ArrayList<String>();
-        slist.add("Tigers");
-        slist.add("Giants");
-        slist.add("Twins");
-
-        int slistSize = slist.size();
-        String arrStr[] = slist.toArray(new String[slistSize]);
-
-        for (int i = 0; i < arrStr.length; i++) {
-            System.out.println(arrStr[i]);
-        }
+//        }
+//        System.out.println();
+//
+//        //원하는 위치에 추가
+//        HumanDto addhuman = new HumanDto("홍두께", 25, 176.9);
+//        hlist.add(1, addhuman);
+//
+//        for (HumanDto h : hlist) {
+//            System.out.println(h.toString());
+//        }
+//        System.out.println();
+//
+//        //삭제
+//        int findindex = -1;
+//        for (int i = 0; i < hlist.size(); i++) {
+//
+//            HumanDto h = hlist.get(i);
+//            if (h.getName().equals("성춘향")){
+//                findindex = i;
+//                break;
+//            }
+//        }
+//
+//        if (findindex != -1){
+//            hlist.remove(findindex);
+//        }
+//
+//        for (HumanDto h : hlist) {
+//            System.out.println(h.toString());
+//        }
+//
+//        System.out.println();
+//
+//        //새로운 List를 또 만들어서 검색 동명이인을 찾아서 거기다 넣어두어서 동명이인 출력
+//        List<HumanDto> findList = new ArrayList<HumanDto>();
+//        for (int i = 0; i < hlist.size(); i++) {
+//            HumanDto h = hlist.get(i);
+//
+//            if (h.getName().equals("홍두께")){
+//                findList.add(h);
+//            }
+//        }
+//        for (HumanDto h : findList) {
+//            System.out.println(h.toString());
+//        }
+//
+//        //수정
+//        findindex = -1;
+//        for (int i = 0; i < hlist.size(); i++) {
+//            HumanDto h = hlist.get(i);
+//            if (h.getName().equals("성춘향")){
+//                findindex = i;
+//                break;
+//            }
+//        }
+//
+//        System.out.println();
+//
+//        //list 안에 Object를 변경하는 것을 의미 ( 일지매 -> 아무게 )
+//        HumanDto hman = new HumanDto("아무게", 31, 177.7);
+//        hlist.set(2, hman);
+//
+//        for (HumanDto h : hlist) {
+//            System.out.println(h.toString());
+//        }
+//
+//        System.out.println();
+//        //list 안에 데이터를 수정하는 것을 의미 홍길동 (키, 나이 수정) 찾았다고 가정.
+//        HumanDto man = hlist.get(0);
+//        man.setAge(20);
+//        man.setHeight(180.0);
+//
+//        for (HumanDto h : hlist) {
+//            System.out.println(h.toString());
+//        }
+//
+//        //참고 Object는 모든것을 담는다.
+//        List<Object> allDataList = new ArrayList<>();
+//        allDataList.add(new String("하이"));
+//        allDataList.add(new HumanDto("신하이",23,521.1));
+//        allDataList.add(hlist);
+//
+//        System.out.println();
+//
+//        //Array -> list
+//        String arr[] = {"hello", "world", "hi"};
+//
+//        //이렇게 하면 list로 변경은 되지만 list를 정상적으로 사용할 수 없다.
+//        //List<String> li = Arrays.asList(arr);
+//
+//        List<String> li = new ArrayList<String>();
+//        li.addAll(Arrays.asList(arr)); // list에 추가하는 부분
+//
+//        li.add(new String("good"));
+//
+//        for (int i = 0; i < li.size(); i++) {
+//            String s = li.get(i);
+//            System.out.println(s);
+//        }
+//
+//        System.out.println();
+//
+//        //list -> Array
+//        List<String> slist = new ArrayList<String>();
+//        slist.add("Tigers");
+//        slist.add("Giants");
+//        slist.add("Twins");
+//
+//        int slistSize = slist.size();
+//        String arrStr[] = slist.toArray(new String[slistSize]);
+//
+//        for (int i = 0; i < arrStr.length; i++) {
+//            System.out.println(arrStr[i]);
+//        }
     }
 }
