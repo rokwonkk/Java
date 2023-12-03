@@ -4,6 +4,7 @@ import factory.animal.Animal;
 import factory.animal.Cat;
 import factory.animal.Cow;
 import factory.animal.Dog;
+import factory.partfactory.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,29 +33,31 @@ public class Main {
 //
 //        ((Cat)animal2).catMethod();
 
-        List<Animal> animalList = new ArrayList<>();
-
+        List<Part> partList = new ArrayList<>();
+//
 //        Animal a = null;
+//
+        String partName[] = {"나사", "볼트", "와셔", "볼트", "볼트", "너트"};
 
-        String animalName[] = {"소", "소", "야옹이", "멍멍이", "멍멍이", "멍멍이"};
-
-        for (int i = 0; i < animalName.length; i++) {
-            Animal a = AnimalFactory.create(animalName[i]);
-            animalList.add(a);
+        for (int i = 0; i < partName.length; i++) {
+            Part a = PartFactory1.create(partName[i]);
+            partList.add(a);
         }
 
-        for (int i = 0; i < animalList.size(); i++) {
-            Animal a = animalList.get(i);
+        for (int i = 0; i < partList.size(); i++) {
+            Part a = partList.get(i);
 
-            a.printDescript();
-
-            if(a instanceof Cat cat){
-                cat.catMethod();
-            }else if(a instanceof Dog dog){
-                dog.dogMethod();
-            }else if(a instanceof Cow cow){
-                cow.cowMethod();
+            if(a instanceof Volt b){
+                b.make();
+            }else if(a instanceof Nut b){
+                b.make();
+            }else if(a instanceof Washer b){
+                b.make();
+            }else if(a instanceof Screw b){
+                b.make();
             }
         }
+
+
     }
 }
