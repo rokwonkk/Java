@@ -29,9 +29,6 @@ public class Main {
             //안정성을 고려해서 스트링으로 받는게 낫지만 일단 인트로 함.
             int menuNumber = sc.nextInt();
 
-
-
-
             switch (menuNumber){
                 case 1 -> dao.insert();
                 case 2 -> dao.delete();

@@ -116,7 +116,7 @@ public class MemberDaoImpl implements MemberDao{
             }
 
             if (findMembers.size() > 1){
-                System.out.println(findMembers.size() + "일치하는 이름을 가진 사람들.");
+                System.out.println("일치하는 이름을 가진 사람들.");
                 for (int i= 0; i < findMembers.size(); i++){
                     System.out.println((i+1) +". "+ findMembers.get(i).getName());
                 }
@@ -253,10 +253,10 @@ public class MemberDaoImpl implements MemberDao{
         }
     }
     public void allData(){
-        AddressMember addressMember = AddressMember.getInstance();
+        AddressMember am = AddressMember.getInstance();
 
-        for (int i = 0; i < addressMember.list.size(); i++) {
-            MemberDto s = addressMember.list.get(i);
+        for (int i = 0; i < am.list.size(); i++) {
+            MemberDto s = am.list.get(i);
             System.out.println(s.inFo());
         }
     }

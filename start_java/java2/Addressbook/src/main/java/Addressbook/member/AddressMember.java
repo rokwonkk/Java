@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddressMember {
-
     private static AddressMember am;
 
     public List<MemberDto> list;
