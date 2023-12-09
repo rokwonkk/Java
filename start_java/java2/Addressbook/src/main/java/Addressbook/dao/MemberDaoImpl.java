@@ -252,7 +252,7 @@ public class MemberDaoImpl implements MemberDao{
             System.out.println(s.inFo());
         }
     }
-    public void allData(){
+    public void allData() {
         AddressMember am = AddressMember.getInstance();
 
         for (int i = 0; i < am.list.size(); i++) {
