@@ -7,11 +7,18 @@ public class Main {
         DBConnection.initConnection();
         myClass mycls = new myClass();
 
-        String id = "abd";
+//        String id = "abd";
+//
+//        int count = mycls.userDelete(id);
+//        if (count > 0){
+//            System.out.println("삭제되었습니다.");
+//        }
 
-        int count = mycls.userDelete(id);
+        String id = "aaa";
+        String name = "안녕";
+        int count = mycls.userUpdate(id, name);
         if (count > 0){
-            System.out.println("삭제되었습니다.");
+            System.out.println("수정되었습니다.");
         }
     }
 }
