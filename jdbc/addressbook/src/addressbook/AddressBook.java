@@ -12,7 +12,7 @@ public class AddressBook {
 
     //input
     public void add(){
-        System.out.println("지인추가입니다");
+        System.out.println("주소록 등록입니다");
 
         System.out.print("이름 >> ");
         String name = sc.next();
@@ -34,24 +34,29 @@ public class AddressBook {
         boolean b = dao.insert(new AddressBookDto(name, age, phone, address, memo));
 
         if(!b){
-            System.out.println("지인추가가 실패했습니다.");
+            System.out.println("주소록 등록이 실패했습니다.");
         } else {
-            System.out.println("지인추가가 완료 되었습니다.");
+            System.out.println("주소록 등록이 완료 되었습니다.");
         }
     }
     public void drop(){
-        System.out.println("삭제시킬 지인의 이름을 입력하세요");
+        System.out.println("삭제시킬 주소록 이름을 입력하세요");
 
         System.out.print("이름 >> ");
         String name = sc.next();
 
         AddressBookDao dao = AddressBookDao.getInstance();
 
-        dao.delete(name);
+        boolean b = dao.delete(name);
+        if(!b) {
+            System.out.println("데이터가 없거나 삭제되지 않았습니다");
+        }
+
+        System.out.println("삭제되었습니다");
     }
 
     public void nameSearch(){
-        System.out.println("검색할 지인의 이름을 입력하세요");
+        System.out.println("검색할 사람의 이름을 입력하세요");
 
         System.out.print("입력 >> ");
         String nameKeyword = sc.next();
@@ -68,7 +73,7 @@ public class AddressBook {
     }
 
     public void addressSearch(){
-        System.out.println("검색할 지인의 주소를 입력하세요");
+        System.out.println("검색할 사람의 주소를 입력하세요");
 
         System.out.print("입력 >> ");
         String addressKeyword = sc.next();
@@ -85,7 +90,7 @@ public class AddressBook {
     }
 
     public void memoSearch(){
-        System.out.println("검색할 지인의 메모를 입력하세요");
+        System.out.println("검색할 주소록 메모를 입력하세요");
 
         System.out.print("입력 >> ");
         String memoKeyword = sc.next();
@@ -129,7 +134,6 @@ public class AddressBook {
                 updateKeyword = sc.next();
                 break;
         }
-
         boolean updateYn = AddressBookDao.getInstance().update(name, updateKeyword, sn);
 
         if(!updateYn){

@@ -26,12 +26,14 @@ public class AddressBookDao {
     }
 
     public boolean insert(AddressBookDto dto){
-        String sql = "insert into addressbook(name, age, phone, address, memo) " +
-                "values('" + dto.getName() + "',"
+        String sql = "insert into addressbook(name, age, phone, address, memo) values "
+                + "('"
+                + dto.getName() + "',"
                 + dto.getAge() + ",'"
                 + dto.getPhone() + "','"
                 + dto.getAddress() + "','"
-                + dto.getMemo() + "') ";
+                + dto.getMemo()
+                + "') ";
 
         Connection conn = null;
         Statement stmt = null;
@@ -186,21 +188,17 @@ public class AddressBookDao {
 
     public boolean update(String name, String updateKeyword, int sn){
 
-        String sql;
+        String sql = "update addressbook ";
 
         if (sn == 1){
-            sql = "update addressbook "
-                    + "set phone = '" + updateKeyword +  "' "
-                    + "where name like '%" + name + "%' ";
+            sql += "set phone = '" + updateKeyword +  "' ";
         } else if (sn == 2){
-            sql = "update addressbook "
-                    + "set address = '" + updateKeyword +  "' "
-                    + "where name like '%" + name + "%' ";
+            sql += "set address = '" + updateKeyword +  "' ";
         } else {
-            sql = "update addressbook "
-                    + "set memo = '" + updateKeyword +  "' "
-                    + "where name like '%" + name + "%' ";
+            sql +=  "set memo = '" + updateKeyword +  "' ";
         }
+
+        sql += "where name like '%" + name + "%' ";
 
         Connection conn = null;
         Statement stmt = null;
