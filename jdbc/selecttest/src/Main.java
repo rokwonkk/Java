@@ -18,7 +18,7 @@ public class Main {
 //            System.out.println(user);
 //        } else {
 //            System.out.println("등록되지 않은 id 입니다.");
-//        }
+//        }2
 
         List<UserDto> list = st.getUserList();
         if(!list.isEmpty()){
