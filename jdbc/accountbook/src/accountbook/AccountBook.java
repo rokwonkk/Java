@@ -79,7 +79,7 @@ public class AccountBook {
 
     public void update(){
         search();
-        System.out.println("수정할 데이터 번호를 입력하세요");
+        System.out.println("수정할 데이터의 번호를 입력하세요");
         System.out.print("입력 >> ");
         int seq = sc.nextInt();
 
