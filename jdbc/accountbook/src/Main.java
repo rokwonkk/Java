@@ -62,6 +62,8 @@ public class Main {
 
                     //검색 전체 검색
                     case 20 -> book.search();
+
+                    default -> System.out.println("잘못 선택하셨습니다. 다시 선택해주세요");
                 }
             }
         }
